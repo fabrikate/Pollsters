@@ -11,12 +11,14 @@
   function ConfigPolls($routeProvider){
     $routeProvider
     .when('/polls', {
-      // templateUrl: FIGURE OUT URL PATH,
-      controller: 'pollsController'
+      templateUrl: '/partials/polls/index.html',
+      controller: 'pollsController',
+      controllerAs: 'vm'
     })
     .when('/polls/:poll_id',{
-      // templateUrl: FIGURE OUT URL PATH,
-      controller: 'pollsController'
+      templateUrl: '/partials/polls/show.html',
+      controller: 'pollsController',
+      controllerAs: 'vm'
     })
   }
 

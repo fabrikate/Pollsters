@@ -5,9 +5,10 @@
   .module('app.polls')
   .controller('pollsController', PollsController);
 
-  PollsController.$inject = [$scope, 'PollFactory'];
+  PollsController.$inject = ['PollFactory'];
 
-  function PollsController($scope, PollFactory){
+  function PollsController(PollFactory){
+    var vm = this;
 
   }
 

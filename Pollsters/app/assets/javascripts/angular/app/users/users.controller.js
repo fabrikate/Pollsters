@@ -5,10 +5,9 @@
   .module('app.users')
   .controller('usersController', UsersController);
 
-  UsersController.$inject = [$scope, 'PollFactory'];
+  UsersController.$inject = ['PollFactory'];
 
-  function UsersController($scope, PollFactory){
-  
+  function UsersController(PollFactory){
+    var vm = this;
   }
-
 })();

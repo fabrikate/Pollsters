@@ -11,8 +11,9 @@
   function ConfigUsers($routeProvider){
     $routeProvider
     .when('/user', {
-      // templateUrl: FIGURE OUT URL PATH
-      controller: 'usersController'
+      templateUrl: 'partials/polls/index.html',
+      controller: 'usersController',
+      controllerAs: 'vm'
     })
   }
 
