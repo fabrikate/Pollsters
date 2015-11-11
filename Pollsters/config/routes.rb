@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
   
   root to: 'statics#index'
-  
-  # scope '/api' do
-  #   resources :polls, only: [:index, :show, :create, :update, :destroy]
-  # end
+
+   resources :users, only: [:index, :show, :create, :update, :destroy] 
+   resources :polls, only: [:index, :show, :create, :update, :destroy] 
 
 end
