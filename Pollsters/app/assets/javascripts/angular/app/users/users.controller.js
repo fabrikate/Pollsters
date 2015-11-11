@@ -3,7 +3,7 @@
 
   angular
   .module('app.users')
-  .controller('usersController', UsersController);
+  .controller('UsersController', UsersController);
 
   UsersController.$inject = ['PollFactory'];
 
