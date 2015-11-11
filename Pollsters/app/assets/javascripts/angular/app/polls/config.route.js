@@ -12,12 +12,12 @@
     $routeProvider
     .when('/polls', {
       templateUrl: '/partials/polls/index.html',
-      controller: 'pollsController',
+      controller: 'PollsController',
       controllerAs: 'vm'
     })
     .when('/polls/:poll_id',{
       templateUrl: '/partials/polls/show.html',
-      controller: 'pollsController',
+      controller: 'PollsController',
       controllerAs: 'vm'
     })
   }
