@@ -1,55 +1,38 @@
 class PollsController < ApplicationController
-  before_action :set_poll, only: [:show, :edit, :update, :destroy]
+  before_action :set_poll, only: [:show, :update, :destroy]
 
-  # GET /polls
-  # GET /polls.json
   def index
     @polls = Poll.all
   end
 
   # GET /polls/1
-  # GET /polls/1.json
   def show
+    render json: @poll, status: :ok
   end
 
   # POST /polls
-  # POST /polls.json
   def create
     @poll = Poll.new(poll_params)
-
-    respond_to do |format|
-      if @poll.save
-        format.html { redirect_to @poll, notice: 'Poll was successfully created.' }
-        format.json { render :show, status: :created, location: @poll }
-      else
-        format.html { render :new }
-        format.json { render json: @poll.errors, status: :unprocessable_entity }
-      end
+    if @poll.save
+      render json: @poll, status: :created
+    else
+      render json: @poll.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /polls/1
-  # PATCH/PUT /polls/1.json
   def update
-    respond_to do |format|
-      if @poll.update(poll_params)
-        format.html { redirect_to @poll, notice: 'Poll was successfully updated.' }
-        format.json { render :show, status: :ok, location: @poll }
-      else
-        format.html { render :edit }
-        format.json { render json: @poll.errors, status: :unprocessable_entity }
-      end
+    if @poll.update(poll_params)
+      render json: @poll, status: :ok
+    else
+      render json: @poll.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /polls/1
-  # DELETE /polls/1.json
   def destroy
     @poll.destroy
-    respond_to do |format|
-      format.html { redirect_to polls_url, notice: 'Poll was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    render json: @contact, status: :ok
   end
 
   private
