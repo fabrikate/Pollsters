@@ -12,7 +12,7 @@
     $routeProvider
     .when('/user', {
       templateUrl: 'partials/polls/index.html',
-      controller: 'usersController',
+      controller: 'UsersController',
       controllerAs: 'vm'
     })
   }
