@@ -11,11 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 0) do
+=======
 ActiveRecord::Schema.define(version: 20151111180408) do
+>>>>>>> cdf61d0e37e79b072c5bf17042cd38d2008e6562
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+<<<<<<< HEAD
+=======
   create_table "polls", force: :cascade do |t|
     t.text     "title"
     t.string   "options",    default: [],              array: true
@@ -30,4 +36,5 @@ ActiveRecord::Schema.define(version: 20151111180408) do
     t.datetime "updated_at", null: false
   end
 
+>>>>>>> cdf61d0e37e79b072c5bf17042cd38d2008e6562
 end
