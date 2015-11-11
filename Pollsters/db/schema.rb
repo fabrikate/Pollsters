@@ -11,11 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20151111192754) do
+=======
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 0) do
+=======
+ActiveRecord::Schema.define(version: 20151111180408) do
+>>>>>>> cdf61d0e37e79b072c5bf17042cd38d2008e6562
+>>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+<<<<<<< HEAD
+=======
   create_table "polls", force: :cascade do |t|
     t.text     "title"
     t.string   "options",    default: [],              array: true
@@ -31,4 +41,5 @@ ActiveRecord::Schema.define(version: 20151111192754) do
     t.string   "password_digest"
   end
 
+>>>>>>> cdf61d0e37e79b072c5bf17042cd38d2008e6562
 end
