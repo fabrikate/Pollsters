@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :options
   resources :polls
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.

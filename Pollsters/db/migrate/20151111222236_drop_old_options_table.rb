@@ -1,0 +1,5 @@
+class DropOldOptionsTable < ActiveRecord::Migration
+  def change
+    drop_table(:polls)
+  end
+end
