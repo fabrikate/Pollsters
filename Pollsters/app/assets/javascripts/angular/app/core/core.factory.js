@@ -5,8 +5,8 @@
   .factory('PollFactory', PollFactory);
 
   PollFactory.$inject = ['ngResource']
-
   function PollFactory(ngResource){ 
-  
+
   }
+  
 })();
