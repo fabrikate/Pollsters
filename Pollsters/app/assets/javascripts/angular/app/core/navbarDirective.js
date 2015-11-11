@@ -5,7 +5,7 @@
     .module('app.core')
     .directive('Navbar', function(){
       return {
-        templateUrl: '/partials/layout/navbar.html'
+        templateUrl: '/partials/layout/navbar.html',
         restrict: 'E',
         scope: {
           navbar: '=navbarData'
