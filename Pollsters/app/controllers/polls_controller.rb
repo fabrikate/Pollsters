@@ -12,15 +12,6 @@ class PollsController < ApplicationController
   def show
   end
 
-  # GET /polls/new
-  def new
-    @poll = Poll.new
-  end
-
-  # GET /polls/1/edit
-  def edit
-  end
-
   # POST /polls
   # POST /polls.json
   def create
