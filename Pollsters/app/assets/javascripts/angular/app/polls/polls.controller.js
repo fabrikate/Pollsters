@@ -9,7 +9,11 @@
 
   function PollsController(PollFactory){
     var vm = this;
+    vm.polls = PollFactory.query()
 
-  }
+    vm.createPoll = function(pollID){
+      vm.currentPoll = PollFactory.get({poll: pollID});
+    };
+  };
 
 })();
