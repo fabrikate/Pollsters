@@ -23,8 +23,10 @@
       options: []
     }
     vm.save = function() {
-      console.log('option', vm.option);
-      console.log('poll', vm.poll);
+      vm.poll.options.push(angular.copy(vm.option));
+      console.log(vm.poll)
+      $('#pollTitle').hide();
+      vm.option.name = '';
     }
   };
 

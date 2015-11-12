@@ -1,8 +1,19 @@
 <div class="container-fluid row" ng-controller="PollsController">
   <h2>Create a Poll</h2>
-  <form class="form-horizontal col-lg-8 col-xs-8" ng-submit="vm.save()">
-    <input type="text" placeholder="Enter a Poll Question" ng-model="vm.poll.title" />
+  <form class="form-horizontal col-lg-6 col-xs-6" ng-submit="vm.save()">
+    <input type="text" placeholder="Enter a Poll Question" ng-model="vm.poll.title" id="pollTitle" />
     <input type="text" placeholder="Response Option" ng-model="vm.option.name" />
     <button>Add</button>
   </form>
+  <div class="col-lg-6 col-xs-6">
+    <h3>{{ vm.poll.title }}</h3>
+    <ul>
+      <li ng-repeat="option in vm.poll.options">
+        <label for="{{ option.name }}">{{ option.name }}</label>
+        <input type="radio" id="option.name" name="option">
+        <p>Votes: {{ option.vote }} </p>
+      </li>
+    </ul>
+    <button ng-if="vm.poll.title">Love it? Save it!</button>
+  </div>
 </div>
