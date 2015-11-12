@@ -1,16 +1,8 @@
-<div class="container-fluid" ng-controller="PollsController">
+<div class="container-fluid row" ng-controller="PollsController">
   <h2>Create a Poll</h2>
-  <form class="form-horizontal">
-    <fieldset>
-      <div class="form-group">
-        <label for="polltitle">Question to Poll: </label>
-        <input type="text" id="pollTitle" class="form-control" />
-      </div>
-      <div class="form-group">
-        <label for="numOpts">How many response options do you want?</label>
-        <input type="number" id="numOpts" class="form-control" min="2" max="10"/>
-        <button ng-click="">Start</button>
-      </div>
-    </fieldset>
+  <form class="form-horizontal col-lg-8 col-xs-8" ng-submit="vm.save()">
+    <input type="text" placeholder="Enter a Poll Question" ng-model="vm.poll.title" />
+    <input type="text" placeholder="Response Option" ng-model="vm.option.name" />
+    <button>Add</button>
   </form>
 </div>
