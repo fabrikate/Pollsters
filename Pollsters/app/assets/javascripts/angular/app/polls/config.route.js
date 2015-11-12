@@ -15,6 +15,11 @@
       controller: 'PollsController',
       controllerAs: 'vm'
     })
+    .when('/polls/new', {
+      templateUrl: '/partials/polls/create.html',
+      controller: 'PollsController',
+      controllerAs: 'vm'
+    })
     .when('/polls/:poll_id',{
       templateUrl: '/partials/polls/show.html',
       controller: 'PollsController',

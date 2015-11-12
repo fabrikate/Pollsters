@@ -2,9 +2,7 @@ Rails.application.routes.draw do
   root to: 'statics#index'
 
 scope '/api' do
-  resources :polls do
-    resources :options
-  end
+  resources :polls
 end
 
 scope '/api' do
