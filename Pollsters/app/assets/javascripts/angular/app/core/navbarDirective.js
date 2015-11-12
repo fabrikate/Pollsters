@@ -2,13 +2,10 @@
   'use strict';
   angular
     .module('app.core')
-    .directive('Navbar', function(){
+    .directive('gsNavbar', function(){
       return {
-        templateUrl: '/partials/layout/navbar.html',
-        restrict: 'E',
-        scope: {
-          navbar: '=navbarData'
-        }
+        templateUrl: 'partials/layout/navbar.html'
       }
     });
 });
+
