@@ -4,9 +4,9 @@
   .module('app.core')
   .factory('PollFactory', PollFactory);
 
-  PollFactory.$inject = ['ngResource']
-  function PollFactory(ngResource){ 
-
+  PollFactory.$inject = ['$resource']
+  function PollFactory($resource) {
+    return {};
   }
-  
+
 })();

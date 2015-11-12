@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require angular/lib/angular.min.js
-//= require turbolinks
-//=require angular/lib/ngResource.min.js
-//= require_tree ./angular
+//= require_tree ./angular/lib
+//= require ./angular/app/core/core.module
+//= require ./angular/app/polls/polls.module
+//= require ./angular/app/users/users.module
+//= require_tree .

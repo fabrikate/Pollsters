@@ -6,7 +6,6 @@
     'ngRoute',
     'ngResource',
     'app.polls',
-    'app.layout',
     'app.users',
     'app.core'])
 
@@ -14,7 +13,7 @@
 
   configModule.$inject = ['$httpProvider', '$routeProvider', '$locationProvider'];
 
-  function configModule($httpProvider, $routeProvider, $locationProvider){
+  function configModule($httpProvider, $routeProvider, $locationProvider) {
     //figure out which of the above three I actually need
     $routeProvider
       .otherwise({redirectTo: '/polls'});
