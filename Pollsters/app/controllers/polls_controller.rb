@@ -3,6 +3,7 @@ class PollsController < ApplicationController
 
   def index
     @polls = Poll.all
+    render json: @polls
   end
 
   # GET /polls/1
