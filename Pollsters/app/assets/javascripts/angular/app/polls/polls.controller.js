@@ -9,33 +9,40 @@
 
   function PollsController(PollFactory){
     var vm = this;
-    // vm.polls = PollFactory.query()
-    var Polls = PollFactory.query();
-    // vm.createPoll = function(pollID){
-    //   vm.currentPoll = PollFactory.get({poll: pollID});
-    // };
 
+    // vm.Polls = PollFactory.get();
+    // console.log(vm.Polls);
+    var Polls = PollFactory.get({}, function(data) {
+      vm.Polls = data.polls;
+    });
+    // console.log(Polls.polls);
+    // console.log(Polls);
     vm.option = {
-      name: '',
-      vote: 0
+      answer: '',
+      vote: 0,
+      poll_id: null
     }
     vm.poll = {
       title: '',
-      options: []
+      id: null
     }
-    // Use POSTGREs to embed data and use the active model: store in the poll model
-    //
+
+    vm.pollDB = [];
+    vm.optionsDB = [];
+
+
     vm.save = function() {
-      vm.poll.options.push(angular.copy(vm.option));
-      $('#pollTitle').hide();
-      vm.option.name = '';
+      vm.createdPoll = new PollFactory();
+      vm.createdPoll.title = vm.poll.title;
+      PollFactory.save(vm.createdPoll, function(){
+        console.log('saved api call: ', vm.createdPoll);
+      })
+      vm.option.poll_id = vm.Polls.length;
+      //When back from lunch make factory for options and do same thing for them.
     }
     vm.saveToDB = function() {
-      var poll = new PollFactory(vm.poll);
-      poll.$save().then(function() {
-        vm.poll.options.push(angular.copy(vm.option));
-        vm.option.name = '';
-      })
+      vm.pollDB.push(angular.copy(vm.poll));
+      console.log(vm.pollDB)
     }
   };
 
