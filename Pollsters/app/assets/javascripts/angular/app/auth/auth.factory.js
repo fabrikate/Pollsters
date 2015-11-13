@@ -2,12 +2,29 @@
   'use strict';
 
   angular.module('app.auth')
-    .factory('AuthFactory', AuthFactory);
+    .factory('AuthService', AuthService);
 
-  AuthFactory.$inject = ['$resource'];
+  AuthService.$inject = ['$http'];
 
-  function AuthFactory($resource) {
+  function AuthService($http) {
+    var AuthService = {};
 
-    return {}
+    AuthService.currentUser = null;
+
+    AuthService.attemptLogin = function(userInfo) {
+      // console.log(userInfo);
+      // return $http.post('/api/login', userInfo).then(function() {
+
+      // });
+    };
+
+    AuthService.logout = function(userInfo) {
+      return $http.post('/api/logout').then(function(data) {
+        //also need to have logout showon navbar
+
+      });
+    }
+
+    return AuthService;
   }
 })();

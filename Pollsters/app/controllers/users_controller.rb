@@ -1,13 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
 
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-    render json: @users, status: :ok
-  end
-
   # GET /users/1
   # GET /users/1.json
   def show
@@ -42,7 +35,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
 
-    render json: @contact, status: :ok
+    render json: @user, status: :ok
   end
 
   private
