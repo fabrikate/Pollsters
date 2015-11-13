@@ -9,33 +9,32 @@
 
   function PollsController(PollFactory){
     var vm = this;
-    // vm.polls = PollFactory.query()
-    var Polls = PollFactory.query();
-    // vm.createPoll = function(pollID){
-    //   vm.currentPoll = PollFactory.get({poll: pollID});
-    // };
 
+    var Polls = PollFactory.query();
     vm.option = {
       name: '',
-      vote: 0
+      vote: 0,
+      poll_id: null
     }
     vm.poll = {
       title: '',
-      options: []
+      id: null
     }
-    // Use POSTGREs to embed data and use the active model: store in the poll model
-    //
+
+    vm.pollDB = [];
+    vm.optionsDB = [];
+
     vm.save = function() {
-      vm.poll.options.push(angular.copy(vm.option));
-      $('#pollTitle').hide();
+      vm.poll.id = vm.pollDB.length
+      vm.option.poll_id = vm.poll.id;
+      vm.optionsDB.push(angular.copy(vm.option));
       vm.option.name = '';
+      vm.option.poll_id = null;
+      console.log(vm.poll);
+      console.log(vm.optionsDB);
     }
     vm.saveToDB = function() {
-      var poll = new PollFactory(vm.poll);
-      poll.$save().then(function() {
-        vm.poll.options.push(angular.copy(vm.option));
-        vm.option.name = '';
-      })
+      vm.pollDB.push(angular.copy(vm.poll));
     }
   };
 
