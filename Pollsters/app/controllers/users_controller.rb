@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
+  before_action :confirm_logged_in!, only: [:update, :destroy]
   before_action :set_user, only: [:show, :update, :destroy]
 
   # GET /users/1
   # GET /users/1.json
   def show
-    render json: @user, status: :ok
+    render json: { id: @user.id, email: @user.email }, status: :ok
+    # render json: {message: "hello"}, status: :ok
   end
 
   # POST /users
@@ -35,7 +37,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
 
-    render json: @user, status: :ok
+    render json: {message: "#{@user.id} deleted"}, status: :ok
   end
 
   private
