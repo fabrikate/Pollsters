@@ -6,6 +6,7 @@
     'ngRoute',
     'ngResource',
     'app.polls',
+    'app.auth',
     'app.users',
     'app.core'])
 

@@ -15,6 +15,7 @@
 //= require angular/lib/angular.min.js
 //= require_tree ./angular/lib
 //= require ./angular/app/core/core.module
+//= require ./angular/app/auth/auth.module
 //= require ./angular/app/polls/polls.module
 //= require ./angular/app/users/users.module
 //= require_tree .
