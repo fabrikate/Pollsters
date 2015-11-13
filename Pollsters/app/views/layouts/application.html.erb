@@ -14,9 +14,9 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown open">
-              <a ng-click="showLogin = !showLogin" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Login<span class="caret"></span></a>
+              <a ng-click="showLogin = !showLogin; showSignup = false;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Login<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a ng-click="showSignup = !showSignup" href="#">Signup</a></li>
+                <li><a ng-click="showSignup = !showSignup; showLogin = false" href="#">Signup</a></li>
               </ul>
             </li>
           </ul>
@@ -26,6 +26,29 @@
   </header>
 
   <div class="container">
+  <!-- Log in Form -->
+    <div class="row" ng-show="showLogin">
+      <div class="col-md-4 col-md-offset-4">
+        <form>
+          <div class="form-group">
+            <label for="loginEmail">Email:</label>
+            <input class="form-control" if="loginEmail" type="text" ng-model="vm.user.email" />
+          </div>
+          <div class="form-group">
+            <label for="loginPW">Password:</label>
+            <input class="form-control" if="loginPw" type="password" ng-model="vm.user.password" />
+            </label>
+          </div>
+<!--           <div class="form-group">
+            <label for="newUserPw2">Re-enter your password:</label>
+            <input class="form-control" id="newUserPw2" type="password" />
+          </div> -->
+          <button class="btn btn-primary">Login</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Sign Up Form -->
     <div class="row" ng-show="showSignup">
       <div class="col-md-4 col-md-offset-4">
         <form>
@@ -42,12 +65,13 @@
             <label for="newUserPw2">Re-enter your password:</label>
             <input class="form-control" id="newUserPw2" type="password" />
           </div> -->
+          <button class="btn btn-primary">Sign Up</button>
         </form>
       </div>
     </div>
   </div>
 
+
   <div class="container" ng-view></div>
 </body>
-
 </html>
