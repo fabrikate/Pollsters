@@ -10,9 +10,15 @@
   function PollsController(PollFactory){
     var vm = this;
 
-    var Polls = PollFactory.query();
+    // vm.Polls = PollFactory.get();
+    // console.log(vm.Polls);
+    var Polls = PollFactory.get({}, function(data) {
+      vm.Polls = data.polls;
+    });
+    // console.log(Polls.polls);
+    // console.log(Polls);
     vm.option = {
-      name: '',
+      answer: '',
       vote: 0,
       poll_id: null
     }
@@ -24,17 +30,19 @@
     vm.pollDB = [];
     vm.optionsDB = [];
 
+
     vm.save = function() {
-      vm.poll.id = vm.pollDB.length
-      vm.option.poll_id = vm.poll.id;
-      vm.optionsDB.push(angular.copy(vm.option));
-      vm.option.name = '';
-      vm.option.poll_id = null;
-      console.log(vm.poll);
-      console.log(vm.optionsDB);
+      vm.createdPoll = new PollFactory();
+      vm.createdPoll.title = vm.poll.title;
+      PollFactory.save(vm.createdPoll, function(){
+        console.log('saved api call: ', vm.createdPoll);
+      })
+      vm.option.poll_id = vm.Polls.length;
+      //When back from lunch make factory for options and do same thing for them.
     }
     vm.saveToDB = function() {
       vm.pollDB.push(angular.copy(vm.poll));
+      console.log(vm.pollDB)
     }
   };
 

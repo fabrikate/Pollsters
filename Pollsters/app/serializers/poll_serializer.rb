@@ -1,6 +1,6 @@
 class PollSerializer < ActiveModel::Serializer
-  attributes :title
-  
+  attributes :title, :id
+
   has_many :options
 
   def options

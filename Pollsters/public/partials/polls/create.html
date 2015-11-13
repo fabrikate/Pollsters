@@ -1,5 +1,6 @@
 <div class="container-fluid row" ng-controller="PollsController">
   <h2>Create a Poll</h2>
+  <p>{{ vm.Polls }}</p>
   <form class="form-horizontal col-lg-6 col-xs-6" ng-submit="vm.save()">
     <input type="text" placeholder="Enter a Poll Question" ng-model="vm.poll.title" id="pollTitle" />
     <input type="text" placeholder="Response Option" ng-model="vm.option.name" />
