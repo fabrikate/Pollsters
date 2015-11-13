@@ -1,10 +1,11 @@
 <div class="container-fluid row" ng-controller="PollsController">
   <h2>Create a Poll</h2>
-  <p>{{ vm.Polls }}</p>
-  <form class="form-horizontal col-lg-6 col-xs-6" ng-submit="vm.save()">
-    <input type="text" placeholder="Enter a Poll Question" ng-model="vm.poll.title" id="pollTitle" />
+
+  <form class="form-horizontal col-lg-6 col-xs-6">
+    <input type="text" placeholder="Enter a Poll Question" ng-model="vm.poll.title" class="pollTitle" />
+    <button class="pollTitle" ng-click="vm.savePollName()"> -> </button>
     <input type="text" placeholder="Response Option" ng-model="vm.option.name" />
-    <button>Add</button>
+    <button ng-click="vm.save()">Add</button>
   </form>
   <div class="col-lg-6 col-xs-6">
     <h3>{{ vm.poll.title }}</h3>

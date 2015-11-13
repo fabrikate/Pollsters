@@ -5,18 +5,19 @@
   .module('app.polls')
   .controller('PollsController', PollsController);
 
-  PollsController.$inject = ['PollFactory'];
+  PollsController.$inject = ['PollFactory', 'OptionFactory'];
 
-  function PollsController(PollFactory){
+  function PollsController(PollFactory, OptionFactory){
     var vm = this;
 
-    // vm.Polls = PollFactory.get();
-    // console.log(vm.Polls);
     var Polls = PollFactory.get({}, function(data) {
       vm.Polls = data.polls;
     });
-    // console.log(Polls.polls);
-    // console.log(Polls);
+
+    var Options = OptionFactory.get({}, function(data) {
+      vm.Options = data.options;
+    })
+
     vm.option = {
       answer: '',
       vote: 0,
@@ -30,19 +31,30 @@
     vm.pollDB = [];
     vm.optionsDB = [];
 
-
-    vm.save = function() {
+    vm.savePollName = function() {
       vm.createdPoll = new PollFactory();
       vm.createdPoll.title = vm.poll.title;
-      PollFactory.save(vm.createdPoll, function(){
+      PollFactory.save(vm.createdPoll, function() {
         console.log('saved api call: ', vm.createdPoll);
       })
+      // $('.pollTitle').hide();
+    }
+    vm.save = function() {
       vm.option.poll_id = vm.Polls.length;
-      //When back from lunch make factory for options and do same thing for them.
+      vm.optionsDB.push(angular.copy(vm.option));
+      vm.option.poll_id = null;
+      vm.option.answer = '';
     }
     vm.saveToDB = function() {
-      vm.pollDB.push(angular.copy(vm.poll));
-      console.log(vm.pollDB)
+      vm.optionsDB.forEach(function(item) {
+        vm.createdOption = new OptionFactory();
+        vm.createdOption.answer = item.answer
+        vm.createdOption.poll_id = item.poll_id
+        vm.createdOption.vote = item.vote
+        OptionFactory.save(vm.createdOption, function() {
+          console.log('saved api option ', vm.createdOption);
+        })
+      })
     }
   };
 
