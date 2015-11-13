@@ -5,18 +5,20 @@ class SessionsController < ApplicationController
       found_user = User.find_by_email params[:email]
       if found_user and found_user.authenticate params[:password]
         session[:user_id] = found_user.id
-        redirect_to users_path, flash: {success: "Logged in!"}
+        render json: {success: "login successful"}
       else
-        redirect_to login_path, alert: "Invalid username / password"
+        render json: {error: "login error"}
       end
     else
-      redirect_to login_path, alert:"Please enter a username and password"
+      render json: {alert: "Please enter a username and password"}
+      # redirect_to login_path, alert:"Please enter a username and password"
     end
   end
 
   def logout
     session[:user_id] = nil
-    redirect_to login_path, notice: "Logged out"
+    render json: {message: "logged out"}
+    # redirect_to login_path, notice: "Logged out"
   end
 
 end

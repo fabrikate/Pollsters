@@ -8,18 +8,32 @@
   AuthController.$inject = ['AuthService', 'UserService'];
 
   function AuthController(AuthService, UserService) {
-    var vm = this;
+    var auth = this;
 
     function login() {
-      // console.log($scope.user);
-      return AuthService.attemptLogin(vm.user);
+      // console.log(auth.user);
+      return AuthService.attemptLogin(auth.user).success(function(data) {
+        console.log(data);
+
+      }).error(function(error) {
+        console.log(error);
+      });
 
     }
 
     function createUser() {
-      //will have to have rails check db and return error if username is already made
-      // UserService.
+      // console.log(auth.newUser);
+      auth.currentUser = UserService.save(auth.newUser, function(data) {
+        console.log(data);
+      }, function(error) {
+        console.log(error);
+      });
+      // console.log(newUser);
     }
-    vm.login = login;
+
+    // auth.currentUser = AuthService.currentUser;
+
+    auth.login = login;
+    auth.createUser = createUser;
   }
 })();

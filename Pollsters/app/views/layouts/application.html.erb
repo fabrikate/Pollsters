@@ -25,21 +25,21 @@
     </nav>
   </header>
 
-  <div class="container" ng-controller="AuthController as vm">
+  <div class="container" ng-controller="AuthController as auth">
   <!-- Log in Form -->
     <div class="row" ng-show="showLogin">
       <div class="col-md-4 col-md-offset-4">
         <form>
           <div class="form-group">
             <label for="loginEmail">Email:</label>
-            <input class="form-control" if="loginEmail" type="text" ng-model="user.email" />
+            <input class="form-control" if="loginEmail" type="text" ng-model="auth.user.email" />
           </div>
           <div class="form-group">
             <label for="loginPW">Password:</label>
-            <input class="form-control" if="loginPw" type="password" ng-model="user.password" />
+            <input class="form-control" if="loginPw" type="password" ng-model="auth.user.password" />
             </label>
           </div>
-          <button class="btn btn-primary" ng-click="login()">Login</button>
+          <button class="btn btn-primary" ng-click="auth.login()">Login</button>
         </form>
       </div>
     </div>
@@ -50,21 +50,22 @@
         <form>
           <div class="form-group">
             <label for="newUserEmail">Your Email:</label>
-            <input class="form-control" if="newUserEmail" type="text" ng-model="vm.newUser.email" />
+            <input class="form-control" if="newUserEmail" type="text" ng-model="auth.newUser.email" />
           </div>
           <div class="form-group">
             <label for="newUserPw">Enter a Password:</label>
-            <input class="form-control" if="newUserPw" type="password" ng-model="vm.newUser.password" />
+            <input class="form-control" if="newUserPw" type="password" ng-model="auth.newUser.password" />
             </label>
           </div>
 <!--           <div class="form-group">
             <label for="newUserPw2">Re-enter your password:</label>
             <input class="form-control" id="newUserPw2" type="password" />
           </div> -->
-          <button class="btn btn-primary">Sign Up</button>
+          <button class="btn btn-primary" ng-click="auth.createUser()">Sign Up</button>
         </form>
       </div>
     </div>
+    {{auth.currentUser}}
   </div>
 
 

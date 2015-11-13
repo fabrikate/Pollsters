@@ -9,8 +9,8 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :create, :update, :destroy]
   end
 
-  post 'login', to: "sessions#attempt_login"
-  delete 'logout', to: "sessions#logout", as: "logout"
+  post '/api/login', to: "sessions#attempt_login"
+  delete '/api/logout', to: "sessions#logout", as: "logout"
 
 end
 

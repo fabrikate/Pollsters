@@ -7,24 +7,32 @@
   AuthService.$inject = ['$http'];
 
   function AuthService($http) {
-    var AuthService = {};
 
-    AuthService.currentUser = null;
 
-    AuthService.attemptLogin = function(userInfo) {
-      // console.log(userInfo);
-      // return $http.post('/api/login', userInfo).then(function() {
+    function attemptLogin(userInfo) {
+      return $http.post('/api/login', userInfo)
+        .success(loginSuccess)
+        .error(loginError);
+    }
 
-      // });
-    };
-
-    AuthService.logout = function(userInfo) {
-      return $http.post('/api/logout').then(function(data) {
-        //also need to have logout showon navbar
-
+    function logout(userInfo) {
+      return $http.post('/api/logout', userInfo).then(function(data) {
+        return data;
       });
     }
 
-    return AuthService;
+    function loginSuccess(data) {
+      return data;
+    }
+
+    function loginError(response) {
+      return response;
+    }
+
+    return {
+      currentUser: null,
+      attemptLogin: attemptLogin,
+      logout: logout
+    };
   }
 })();

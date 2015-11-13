@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
       if @user.save
-        render json: :show, status: :created
+        render json: { id: @user.id, email: @user.email }, status: :created
       else
         render json: @user.errors, status: :unprocessable_entity
       end
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     if @user.update(user_params)
-      render json: :show, status: :ok
+      render json: { id: @user.id, email: @user.email }, status: :ok
     else
       render json: @user.errors, status: :unprocessable_entity
     end
