@@ -5,18 +5,21 @@
   .module('app.polls')
   .controller('PollsController', PollsController);
 
-  PollsController.$inject = ['PollFactory'];
+  PollsController.$inject = ['PollFactory', 'OptionFactory'];
 
-  function PollsController(PollFactory){
+  function PollsController(PollFactory, OptionFactory){
     var vm = this;
 
-    // vm.Polls = PollFactory.get();
-    // console.log(vm.Polls);
+    // query all polls from the database
     var Polls = PollFactory.get({}, function(data) {
       vm.Polls = data.polls;
     });
-    // console.log(Polls.polls);
-    // console.log(Polls);
+    // query all options from the database
+    var Options = OptionFactory.get({}, function(data) {
+      vm.Options = data.options;
+    })
+
+    // form objects
     vm.option = {
       answer: '',
       vote: 0,
@@ -30,21 +33,36 @@
     vm.pollDB = [];
     vm.optionsDB = [];
 
-
-    vm.save = function() {
+    //save poll name to the database
+    vm.savePollName = function() {
       vm.createdPoll = new PollFactory();
       vm.createdPoll.title = vm.poll.title;
-      PollFactory.save(vm.createdPoll, function(){
-        console.log('saved api call: ', vm.createdPoll);
+      PollFactory.save(vm.createdPoll).$promise.then(function(data) {
+        vm.currentPoll_id = data.poll.id;
       })
-      vm.option.poll_id = vm.Polls.length;
-      //When back from lunch make factory for options and do same thing for them.
+      $('.pollTitle').hide();
     }
+
+    vm.save = function() {
+      vm.option.poll_id = vm.currentPoll_id;
+      vm.optionsDB.push(angular.copy(vm.option));
+      vm.option.poll_id = null;
+      vm.option.answer = '';
+    }
+
     vm.saveToDB = function() {
-      vm.pollDB.push(angular.copy(vm.poll));
-      console.log(vm.pollDB)
+      vm.optionsDB.forEach(function(item) {
+        vm.createdOption = new OptionFactory();
+        vm.createdOption.answer = item.answer
+        vm.createdOption.poll_id = item.poll_id
+        vm.createdOption.vote = item.vote
+        OptionFactory.save(vm.createdOption, function() {
+        })
+      })
     }
   };
 
 })();
 
+// the actual poll id - > where?
+// save that to pol id in options before we push to DB
