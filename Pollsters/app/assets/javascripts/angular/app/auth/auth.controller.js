@@ -43,6 +43,22 @@
       });
     }
 
+    function toggleLogin() {
+      auth.showLogin = !auth.showLogin;
+      auth.showSignup =  false;
+      auth.dropdown = false;
+    }
+
+    function toggleSignup() {
+      auth.showSignup = !auth.showSignup;
+      auth.showLogin = false;
+      auth.dropdown = false;
+    }
+
+    function toggleDropdown() {
+      auth.dropdown = !auth.dropdown;
+    }
+
     function setUser(id) {
       console.log(id);
       // id = id.toString();
@@ -51,10 +67,16 @@
       // auth.currentUser = $cookies.get('currentUser');
       console.log($cookies.get('currentUser'));
     }
+    auth.showSignup = false;
+    auth.showLogin = false;
+    auth.dropdown = false;
     setUser();
     $cookies.put('currentUser', '1');
     console.log($cookies.get('currentUser'));
     auth.login = login;
     auth.createUser = createUser;
+    auth.toggleLogin = toggleLogin;
+    auth.toggleSignup =  toggleSignup;
+    auth.toggleDropdown = toggleDropdown;
   }
 })();
