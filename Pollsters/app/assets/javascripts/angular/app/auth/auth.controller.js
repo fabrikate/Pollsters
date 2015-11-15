@@ -5,9 +5,9 @@
   .module('app.auth')
   .controller('AuthController', AuthController);
 
-  AuthController.$inject = ['ipCookie', 'AuthService', 'UserService'];
+  AuthController.$inject = ['$location', 'ipCookie', 'AuthService', 'UserService'];
 
-  function AuthController(ipCookie, AuthService, UserService) {
+  function AuthController($location, ipCookie, AuthService, UserService) {
     var auth = this;
 
     function login() {
@@ -62,9 +62,16 @@
     }
 
     function logout() {
-      ipCookie.remove('current');
-      console.log(ipCookie('current'));
-      auth.loggedIn = false;
+      //have server log out
+      AuthService.logout().then(function(data) {
+        if (data.data.message === "Logged out.")
+        ipCookie.remove('current');
+        // console.log(ipCookie('current'));
+        auth.loggedIn = false;
+        $location.path('/');
+      }, function(error) {
+        console.log(error);
+      });
     }
 
     function setUser(id) {

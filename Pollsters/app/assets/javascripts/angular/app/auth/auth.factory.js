@@ -15,9 +15,11 @@
         .error(loginError);
     }
 
-    function logout(userInfo) {
-      return $http.post('/api/logout', userInfo).then(function(data) {
+    function logout() {
+      return $http.delete('/api/logout').then(function(data) {
         return data;
+      }, function(response) {
+        return response;
       });
     }
 

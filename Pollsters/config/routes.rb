@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   post '/api/login', to: "sessions#attempt_login"
-  delete '/api/logout', to: "sessions#logout", as: "logout"
+  delete '/api/logout', to: "sessions#logout"
 
 end
 
