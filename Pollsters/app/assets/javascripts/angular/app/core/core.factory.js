@@ -4,6 +4,7 @@
   .module('app.core')
   .factory('PollFactory', PollFactory);
 
+
   PollFactory.$inject = ['$resource'];
 
   function PollFactory($resource) {
@@ -13,4 +14,6 @@
       }
     });
   };
+
 })();
+

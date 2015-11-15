@@ -5,41 +5,33 @@
   .module('app.auth')
   .controller('AuthController', AuthController);
 
-  AuthController.$inject = ['$cookies', 'AuthService', 'UserService'];
+  AuthController.$inject = ['ipCookie', 'AuthService', 'UserService'];
 
-  function AuthController($cookies, AuthService, UserService) {
+  function AuthController(ipCookie, AuthService, UserService) {
     var auth = this;
 
     function login() {
-      // console.log(auth.user);
       return AuthService.attemptLogin(auth.user).then(function(data) {
-        // console.log(data);
         if (data.data.success) {
-          // console.log('data', data.data.user.id);
-          // $cookies.put('currentUser', data.data.user.id);
-          // console.log($cookies.get('currentUser'));
+          auth.user = {};
           setUser(data.data.user.id);
         } else if (data.data.error) {
           auth.error = data.data.error;
-          auth.user.password = null;
+          auth.user = {};
         }
       });
     }
 
     function createUser() {
-      // console.log(auth.newUser);
       var createResponse = UserService.save(auth.newUser);
-
       createResponse.$promise.then(function(data) {
-        // console.log(data.id);
-
-        // auth.currentUser = data.id;
         setUser(data.id);
         auth.newUser = {};
       }, function(response) {
-
-        //ERROR HANDLING
-        console.log(response);
+        auth.emailErrors = response.data.email;
+        auth.passwordErrors = response.data.password;
+        auth.newUser = {};
+        console.log(response.data);
       });
     }
 
@@ -57,26 +49,52 @@
 
     function toggleDropdown() {
       auth.dropdown = !auth.dropdown;
+      clearUX();
+    }
+
+    function clearUX() {
+      //blank out any data for UX cleanliness
+      auth.error = null;
+      auth.emailErrors = null;
+      auth.passwordErrors = null;
+      auth.user = {};
+      auth.newUser = {};
+    }
+
+    function logout() {
+      ipCookie.remove('current');
+      console.log(ipCookie('current'));
+      auth.loggedIn = false;
     }
 
     function setUser(id) {
-      console.log(id);
-      // id = id.toString();
-      $cookies.put('currentUser', '1');
-      // var user = $cookies.get("currentUser");
-      // auth.currentUser = $cookies.get('currentUser');
-      console.log($cookies.get('currentUser'));
+      clearUX();
+      ipCookie('current', id);
+      auth.showSignup = false;
+      auth.showLogin = false;
+      checkLoginStatus();
     }
+
+    function checkLoginStatus() {
+      var current = ipCookie('current');
+      if (current) {
+        auth.loggedIn = true;
+        auth.current = current;
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    checkLoginStatus();
     auth.showSignup = false;
     auth.showLogin = false;
     auth.dropdown = false;
-    setUser();
-    $cookies.put('currentUser', '1');
-    console.log($cookies.get('currentUser'));
     auth.login = login;
+    auth.toggleDropdown = toggleDropdown;
     auth.createUser = createUser;
     auth.toggleLogin = toggleLogin;
     auth.toggleSignup =  toggleSignup;
-    auth.toggleDropdown = toggleDropdown;
+    auth.logout = logout;
   }
 })();

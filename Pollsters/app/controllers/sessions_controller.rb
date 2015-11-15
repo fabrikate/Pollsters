@@ -8,18 +8,16 @@ class SessionsController < ApplicationController
         session[:user_id] = found_user.id
         render json: {success: "Login successful.", user: {id: found_user.id, email: found_user.email}}
       else
-        render json: {error: "Email or password is invalid."}
+        render json: {error: "Invalid login."}
       end
     else
-      render json: {alert: "Please enter a username and password."}
-      # redirect_to login_path, alert:"Please enter a username and password"
+      render json: {error: "Please enter a username and password."}
     end
   end
 
   def logout
     session[:user_id] = nil
     render json: {message: "Logged out."}
-    # redirect_to login_path, notice: "Logged out"
   end
 
 end
