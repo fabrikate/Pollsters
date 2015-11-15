@@ -12,20 +12,20 @@
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/">Pollster!</a>
+          <a class="navbar-brand" ng-click="auth.clearShows()" href="/">Pollster!</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown open">
               <a ng-click="auth.toggleDropdown()" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">My Account<span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu" ng-if="!auth.loggedIn" ng-show="auth.dropdown">
+              <ul class="dropdown-menu" role="menu" ng-if="!auth.loggedIn" ng-show="auth.dropdown" ng-click="auth.dropdown = false">
                 <li><a ng-click="auth.toggleLogin()" href="#">Login</a></li>
                 <li><a ng-click="auth.toggleSignup()" href="#">Signup</a></li>
               </ul>
-              <ul class="dropdown-menu" role="menu" ng-if="auth.loggedIn" ng-show="auth.dropdown">
-                <li><a href="/polls/new" ng-click="auth.dropdown = false">New Poll</a>
-                <li><a ng-href="/{{auth.current}}" ng-click="auth.dropdown = false">Update Account</a></li>
-                <li><a ng-click="auth.logout(); auth.dropdown = false;" href="#">Logout</a></li>
+              <ul class="dropdown-menu" role="menu" ng-if="auth.loggedIn" ng-show="auth.dropdown" ng-click="auth.dropdown = false">
+                <li><a href="/polls/new">New Poll</a>
+                <li><a ng-href="/{{auth.current}}">Account Info</a></li>
+                <li><a ng-click="auth.logout()" href="#">Logout</a></li>
               </ul>
             </li>
           </ul>

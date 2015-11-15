@@ -47,6 +47,7 @@
       auth.dropdown = false;
     }
 
+    //DRY UP THIS AND CLEARUX FUNCTION ?
     function toggleDropdown() {
       auth.dropdown = !auth.dropdown;
       clearUX();
@@ -93,15 +94,20 @@
       }
     }
 
+    function clearShows() {
+      auth.showSignup = false;
+      auth.showLogin = false;
+      auth.dropdown = false;
+    }
+
+    clearShows();
     checkLoginStatus();
-    auth.showSignup = false;
-    auth.showLogin = false;
-    auth.dropdown = false;
     auth.login = login;
     auth.toggleDropdown = toggleDropdown;
     auth.createUser = createUser;
     auth.toggleLogin = toggleLogin;
     auth.toggleSignup =  toggleSignup;
     auth.logout = logout;
+    auth.clearShows = clearShows;
   }
 })();
