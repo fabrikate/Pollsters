@@ -15,4 +15,3 @@ Rails.application.routes.draw do
   delete '/api/logout', to: "sessions#logout"
 
 end
-
