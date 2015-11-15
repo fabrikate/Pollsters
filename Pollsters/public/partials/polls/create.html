@@ -17,7 +17,7 @@
         <label for="{{ option.answer }}">{{ option.answer }}</label>
         <input type="radio" id="option.answer" name="option">
         <p>Votes: {{ option.vote }} </p>
-        <button ng-click="deleteOption(option)">delete</button>
+        <button ng-click="vm.delete(option.answer)">delete</button>
       </li>
     </ul>
     <button ng-if="vm.poll.title" ng-click="vm.saveToDB()">Love it? Save it!</button>

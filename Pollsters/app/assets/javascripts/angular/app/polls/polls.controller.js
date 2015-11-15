@@ -60,6 +60,14 @@
         })
       })
     }
+
+    vm.delete = function(option) {
+      for ( var i = 0; i < vm.optionsDB.length; i++ ) {
+        if (vm.optionsDB[i].answer === option) {
+          vm.optionsDB.splice([i], 1);
+        }
+      }
+    }
   };
 
 })();
