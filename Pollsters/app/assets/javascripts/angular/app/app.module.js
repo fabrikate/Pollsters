@@ -5,6 +5,7 @@
   .module('app', [
     'ngRoute',
     'ngResource',
+    'ipCookie',
     'app.polls',
     'app.auth',
     'app.users',

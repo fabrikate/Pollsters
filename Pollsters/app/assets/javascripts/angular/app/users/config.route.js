@@ -10,8 +10,8 @@
 
   function ConfigUsers($routeProvider){
     $routeProvider
-    .when('/user', {
-      templateUrl: 'partials/polls/index.html',
+    .when('/:user', {
+      templateUrl: '/partials/users/show.html',
       controller: 'UsersController',
       controllerAs: 'vm'
     })
