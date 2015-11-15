@@ -20,6 +20,6 @@
         <button ng-click="vm.delete(option.answer)">delete</button>
       </li>
     </ul>
-    <button ng-if="vm.poll.title" ng-click="vm.saveToDB()">Love it? Save it!</button>
+    <a ng-href="/polls" class="btn btn-default" ng-if="vm.poll.title" ng-click="vm.saveToDB()">Love it? Save it!</a>
   </div>
 </div>
