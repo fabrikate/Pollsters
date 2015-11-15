@@ -2,12 +2,39 @@
   'use strict';
 
   angular.module('app.auth')
-    .factory('AuthFactory', AuthFactory);
+    .factory('AuthService', AuthService);
 
-  AuthFactory.$inject = ['$resource'];
+  AuthService.$inject = ['$http'];
 
-  function AuthFactory($resource) {
+  function AuthService($http) {
 
-    return {}
+
+    function attemptLogin(userInfo) {
+      return $http.post('/api/login', userInfo)
+        .success(loginSuccess)
+        .error(loginError);
+    }
+
+    function logout() {
+      return $http.delete('/api/logout').then(function(data) {
+        return data;
+      }, function(response) {
+        return response;
+      });
+    }
+
+    function loginSuccess(data) {
+      return data;
+    }
+
+    function loginError(response) {
+      return response;
+    }
+
+    return {
+      currentUser: null,
+      attemptLogin: attemptLogin,
+      logout: logout
+    };
   }
 })();

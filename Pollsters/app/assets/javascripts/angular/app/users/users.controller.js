@@ -5,9 +5,10 @@
   .module('app.users')
   .controller('UsersController', UsersController);
 
-  UsersController.$inject = ['PollFactory'];
+  UsersController.$inject = ['AuthService'];
 
-  function UsersController(PollFactory){
+  function UsersController(AuthService) {
     var vm = this;
+
   }
 })();
