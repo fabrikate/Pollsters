@@ -7,7 +7,7 @@
 
   PollsController.$inject = ['PollFactory', 'OptionFactory'];
 
-  function PollsController(PollFactory, OptionFactory){
+  function PollsController(PollFactory, OptionFactory) {
     var vm = this;
 
     // query all polls from the database
@@ -68,5 +68,3 @@
 
 })();
 
-// the actual poll id - > where?
-// save that to pol id in options before we push to DB

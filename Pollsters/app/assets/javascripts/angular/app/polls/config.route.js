@@ -22,7 +22,7 @@
     })
     .when('/polls/:poll_id',{
       templateUrl: '/partials/polls/show.html',
-      controller: 'PollsController',
+      controller: 'showController',
       controllerAs: 'vm'
     })
   }
