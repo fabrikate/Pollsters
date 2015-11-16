@@ -4,43 +4,55 @@
       <div class="panel-heading">
         <h3 class="panel-title">My Account</h3>
       </div>
-      <div class="panel-body">
+      <div class="panel-body text-center">
         <div class="row">
-          <div class="col-md-7 col-md-offset-1">
-            <div class="container-fluid">
-              <h4 ng-if="!vm.updateEmail">Email: {{vm.user.email}}</h4>
-              <form ng-if="vm.updateEmail">
-                <div class="form-group">
-                  <label for="updateEmail">New Email:</label>
-                  <input type="text" id="updateEmail" ng-model="vm.user.email" />
-                </div>
-              </form>
+          <div class="col-md-4 col-md-offset-4">
+            <div class="row text-center" ng-if="vm.emailErrors || vm.passwordErrors">
+              <p class="text-danger" ng-if="vm.emailErrors" ng-repeat="emailError in vm.emailErrors track by $index">Email {{emailError}}.</p>
+              <p class="text-danger" ng-if="vm.passwordErrors" ng-repeat="passwordError in vm.passwordErrors track by $index">Password {{passwordError}}.</p>
             </div>
           </div>
-          <div class="col-md-4">
-            <button class="btn btn-primary btn-sm" ng-click="vm.toggleEmailShow()">Update Email Address</button>
-          </div>
         </div>
-        <div class="row">
-          <div class="col-md-7 col-md-offset-1">
-            <form ng-if="vm.resetPw">
-              <div class="form-group">
-                <label for="changePw">New Password:</label>
-                <input type="password" id="changePw" ng-model="vm.user.password" />
-              </div>
-            </form>
-          </div>
-          <div class="col-md-4">
-            <button class="btn btn-primary btn-sm" ng-click="vm.togglePwReset()">Change Password</button>
-          </div>
+        <div class="row update-form-field" ng-if="!vm.updateEmail">
+          <h4>Email: {{vm.user.email}}</h4>
         </div>
-        <div class="row">
+        <div class="row update-form-field" ng-if="vm.updateEmail">
+          <form>
+            <div class="update-form-field">
+              <label for="updateEmail" class="update-form-field"><h4>New email: </h4></label>
+              <input type="text" id="updateEmail" ng-model="vm.user.email" />
+            </div>
+          </form>
+        </div>
+        <div ng-hide="vm.updateEmail" class="row update-row">
+          <button class="btn btn-primary btn-sm" ng-click="vm.toggleEmailShow()">Update Email Address</button>
+        </div>
+        <div class="row update-form-field">
+          <form ng-if="vm.resetPw">
+            <div class="update-form-field">
+              <label for="changePw" class="update-form-field"><h4>New password: </h4></label>
+              <input type="password" id="changePw" ng-model="vm.user.password" />
+            </div>
+          </form>
+          <form ng-if="vm.resetPw">
+            <div class="update-form-field">
+              <label for="pw2" class="update-form-field"><h4>Re-enter password: </h4></label>
+              <input type="password" id="pw2" ng-model="vm.confirmPw" />
+            </div>
+          </form>
+        </div>
+        <div class="row update-row" ng-hide="vm.resetPw">
+          <button class="btn btn-primary btn-sm" ng-click="vm.togglePwReset()">Change Password</button>
+        </div>
+        <div class="row update-row" ng-if="vm.updateEmail || vm.resetPw">
           <div class="col-md-2 col-md-offset-5">
-            <button ng-if="vm.updateEmail || vm.resetPw" class="btn btn-info btn-block">Submit</button>
+            <button class="btn btn-info btn-sm" ng-click="vm.updateUser()">Submit</button>
+            <button class="btn btn-info btn-sm" ng-click="">Cancel</button>
           </div>
         </div>
       </div>
     </div>
+
 
 PASSWORD TWICE
 
@@ -50,6 +62,7 @@ PASSWORD TWICE
       </div>
       <div class="panel-body">
         Panel content
+        <h1>{{vm.current}}</h1>
       </div>
     </div>
 

@@ -85,10 +85,10 @@
     }
 
     function checkLoginStatus() {
-      var current = ipCookie('current');
-      if (current) {
+      AuthService.current = ipCookie('current');
+      if (AuthService.current) {
         auth.loggedIn = true;
-        auth.current = current;
+        auth.current = AuthService.current;
         return true;
       } else {
         return false;

@@ -34,7 +34,8 @@
     return {
       currentUser: null,
       attemptLogin: attemptLogin,
-      logout: logout
+      logout: logout,
+      current: null
     };
   }
 })();
