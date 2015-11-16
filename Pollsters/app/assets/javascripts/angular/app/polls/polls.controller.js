@@ -10,6 +10,15 @@
   function PollsController(PollFactory, OptionFactory) {
     var vm = this;
 
+    //upvote
+    vm.upVote = function(){
+      var ID = vm.chooseVote;
+      var choice = OptionFactory.get({id:ID}, function(){
+        choice.option.vote += 1;
+        choice.$update(choice.option);
+      });
+    };
+
     // query all polls from the database
     var Polls = PollFactory.get({}, function(data) {
       vm.Polls = data.polls;
