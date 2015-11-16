@@ -1,11 +1,13 @@
 <div ng-controller="showController" class="container-fluid">
-  <div class="col-lg-6 col-xs-6">
-    <p> {{ showPoll }}</p>
-    <h1>{{ showPoll.poll.title }}</h1>
-    <form option in showPoll.option>
-      <label for="{{option.answer}}">{{ option.answer }}</label>
-      <input id="option.answer" type="radio" name="pollAnswers">
-      <input type="submit" class="btn btn-primary">
-    </form>
+  <div class="row">
+    <div class="col-lg-4 col-xs-4">
+      <h1>{{ vm.showPoll.title }}</h1>
+      <ul ng-repeat="option in vm.showPoll.options">
+        <li><h2>{{option.answer}}</h2></li>
+      </ul>
+    </div>
+    <div class="col-lg-7 col-xs-7">
+      <canvas id="pie" class="chart chart-pie" chart-data="vm.pollData" chart-labels="vm.pollLabels" chart-legend="true"></canvas>
+    </div>
   </div>
 </div>

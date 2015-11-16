@@ -6,6 +6,7 @@
     'ngRoute',
     'ngResource',
     'ipCookie',
+    'chart.js',
     'app.polls',
     'app.auth',
     'app.users',
