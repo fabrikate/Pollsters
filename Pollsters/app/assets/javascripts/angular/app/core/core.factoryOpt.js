@@ -7,11 +7,8 @@
   OptionFactory.$inject = ['$resource'];
 
   function OptionFactory($resource) {
-     return $resource('http://localhost:3000/api/polls/1/options/:option', {option: '@option'}, {
-        update: {
-          method: 'PUT'
-        }
+     return $resource('http://localhost:3000/api/polls/1/options/:id', {id: '@id'}, {
+        'update': { method: 'PUT' }
       });
     };
-
 })();
