@@ -9,7 +9,6 @@
   <div class="row">
     <div class="col-lg-6 col-xs-6"ng-repeat='poll in vm.Polls' ng-if="poll.options.length > 1">
       <h3>{{poll.title}}</h3>
-      
       <form ng-submit="vm.upVote()"> 
         <p ng-repeat="option in poll.options">
           <label for="{{ option.answer }}">{{ option.answer }}</label>
