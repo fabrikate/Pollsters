@@ -2,6 +2,11 @@ body {
   padding-top: 100px;
 }
 
+#logo {
+  color: #CC6257;
+  font-size: 46px;
+}
+
 .update-row {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -11,3 +16,4 @@ body {
   margin: 0;
 
 }
+

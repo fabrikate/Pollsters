@@ -43,6 +43,7 @@
     vm.savePollName = function() {
       vm.createdPoll = new PollFactory();
       vm.createdPoll.title = vm.poll.title;
+      // vm.createdPoll.user_id = auth.current
       PollFactory.save(vm.createdPoll).$promise.then(function(data) {
         vm.currentPoll_id = data.poll.id;
       })
