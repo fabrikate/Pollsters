@@ -1,25 +1,33 @@
 <div class="container-fluid row" ng-controller="PollsController">
   <h2>Create a Poll</h2>
-
-  <div class="form-horizontal col-lg-6 col-xs-6">
-    <form class="pollTitle" ng-submit="vm.savePollName()">
-      <input type="text" placeholder="Enter a Poll Question" ng-model="vm.poll.title" class="pollTitle" />
-    </form>
-    <form ng-submit="vm.save()">
-      <input type="text" placeholder="Response Option" ng-model="vm.option.answer" />
-      <button>Add</button>
-    </form>
-  </div>
-  <div class="col-lg-6 col-xs-6">
-    <h3>{{ vm.poll.title }}</h3>
-    <ul>
-      <li ng-repeat="option in vm.optionsDB">
-        <label for="{{ option.answer }}">{{ option.answer }}</label>
-        <input type="radio" id="option.answer" name="option">
-        <p>Votes: {{ option.vote }} </p>
-        <button ng-click="vm.delete(option.answer)">delete</button>
-      </li>
-    </ul>
-    <a ng-href="/polls" class="btn btn-default" ng-if="vm.poll.title" ng-click="vm.saveToDB()">Love it? Save it!</a>
+  <div class="row">
+    <div class="col-lg-4 col-xs-4">
+      <form class="pollTitle form-horizontal" ng-submit="vm.savePollName()">
+        <input type="text" placeholder="Enter a Poll Question" ng-model="vm.poll.title" class="pollTitle" />
+        <button>-></button>
+      </form>
+      <form ng-submit="vm.save()" class="form-hortizontal">
+        <input type="text" placeholder="Response Option" ng-model="vm.option.answer" />
+        <button>Add</button>
+      </form>
+    </div>
+    <div class="col-lg-8 col-xs-8">
+        <h3>{{ vm.poll.title }}</h3>
+        <ul>
+          <li ng-repeat="option in vm.optionsDB">
+          <div class="container-fluid">
+            <div class="row col-lg-4 col-xs-4">
+            <label for="{{ option.answer }}">{{ option.answer }}</label>
+            <input type="radio" id="option.answer" name="option">
+            <p>Votes: {{ option.vote }} </p>
+          </div>
+          <div class="row col-lg-8 col-xs-8">
+            <button ng-click="vm.delete(option.answer)">delete</button>
+          </div>
+          </li>
+        </ul>
+      <a ng-href="/polls" class="btn btn-primary" ng-if="vm.poll.title" ng-click="vm.saveToDB()">Love it? Save it!</a>
+    </div>
+    </div>
   </div>
 </div>

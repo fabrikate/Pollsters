@@ -1,0 +1,13 @@
+<div ng-controller="showController" class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4 col-xs-4">
+      <h1>{{ vm.showPoll.title }}</h1>
+      <ul ng-repeat="option in vm.showPoll.options">
+        <li><h2>{{option.answer}}</h2></li>
+      </ul>
+    </div>
+    <div class="col-lg-7 col-xs-7">
+      <canvas id="pie" class="chart chart-pie" chart-data="vm.pollData" chart-labels="vm.pollLabels" chart-legend="true"></canvas>
+    </div>
+  </div>
+</div>

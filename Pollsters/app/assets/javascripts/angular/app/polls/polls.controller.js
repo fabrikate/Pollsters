@@ -7,7 +7,7 @@
 
   PollsController.$inject = ['PollFactory', 'OptionFactory'];
 
-  function PollsController(PollFactory, OptionFactory){
+  function PollsController(PollFactory, OptionFactory) {
     var vm = this;
 
     // query all polls from the database
@@ -18,7 +18,6 @@
     var Options = OptionFactory.get({}, function(data) {
       vm.Options = data.options;
     })
-
     // form objects
     vm.option = {
       answer: '',
@@ -29,10 +28,8 @@
       title: '',
       id: null
     }
-
     vm.pollDB = [];
     vm.optionsDB = [];
-
     //save poll name to the database
     vm.savePollName = function() {
       vm.createdPoll = new PollFactory();
@@ -42,14 +39,13 @@
       })
       $('.pollTitle').hide();
     }
-
+    // save the options to an array
     vm.save = function() {
       vm.option.poll_id = vm.currentPoll_id;
       vm.optionsDB.push(angular.copy(vm.option));
       vm.option.poll_id = null;
       vm.option.answer = '';
     }
-
     vm.saveToDB = function() {
       vm.optionsDB.forEach(function(item) {
         vm.createdOption = new OptionFactory();
@@ -60,7 +56,7 @@
         })
       })
     }
-
+    // delete individual options before they are pushed to the database
     vm.delete = function(option) {
       for ( var i = 0; i < vm.optionsDB.length; i++ ) {
         if (vm.optionsDB[i].answer === option) {
@@ -72,5 +68,3 @@
 
 })();
 
-// the actual poll id - > where?
-// save that to pol id in options before we push to DB
