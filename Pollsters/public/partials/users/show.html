@@ -45,9 +45,11 @@
           <button class="btn btn-primary btn-sm" ng-click="vm.togglePwReset()">Change Password</button>
         </div>
         <div class="row update-row" ng-if="vm.updateEmail || vm.resetPw">
-          <div class="col-md-2 col-md-offset-5">
-            <button class="btn btn-info btn-sm" ng-click="vm.updateUser()">Submit</button>
-            <button class="btn btn-info btn-sm" ng-click="">Cancel</button>
+          <div class="col-md-2 col-md-offset-4">
+            <button class="btn btn-info" ng-click="vm.updateUser()">Submit</button>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-info" ng-click="vm.cancel()">Cancel</button>
           </div>
         </div>
       </div>

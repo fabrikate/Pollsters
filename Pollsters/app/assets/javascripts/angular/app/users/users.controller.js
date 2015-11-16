@@ -68,13 +68,15 @@ console.log(vm.user.email, vm.user.password);
       vm.confirmPw = null;
     }
 
-    function reset() {
-      // vm. = false;
+    function cancel() {
+      vm.updateEmail = false;
+      vm.resetPw = false;
     }
 
     vm.toggleEmailShow = toggleEmailShow;
     vm.togglePwReset =  togglePwReset;
     vm.updateUser = updateUser;
+    vm.cancel = cancel;
 
     getUserInfo();
   }
