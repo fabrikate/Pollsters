@@ -8,15 +8,22 @@
   
   <div class="row">
     <div class="col-lg-6 col-xs-6"ng-repeat='poll in vm.Polls' ng-if="poll.options.length > 1">
-      <h3>{{poll.title}}</h3>
-      <form ng-submit="vm.upVote()"> 
-        <p ng-repeat="option in poll.options">
+      <div class="panel panel-danger text-right">
+        <div class="panel-heading text-left">
+        <h3 class="panel-title">{{poll.title}}</h3>
+      </div>
+
+      <form> 
+        <h4 ng-repeat="option in poll.options">
           <label for="{{ option.answer }}">{{ option.answer }}</label>
           <input type="radio" ng-model="vm.chooseVote" id="option.answer" name="option" 
           value="{{option.id}}"/>
-        </p>
-        <button class="text-center" type="submit">Vote </button>
+        </h4>
+        <div class="panel-footer text-center">
+          <button class="text-center" ng-click="vm.upVote()">Vote </button>
+        </div>
       </form>
     </div>
   </div>
 </div>
+
