@@ -1,12 +1,15 @@
 <div class="container-fluid row" ng-controller="PollsController">
   <h2>Create a Poll</h2>
 
-  <form class="form-horizontal col-lg-6 col-xs-6">
-    <input type="text" placeholder="Enter a Poll Question" ng-model="vm.poll.title" class="pollTitle" />
-    <button class="pollTitle" ng-click="vm.savePollName()"> -> </button>
-    <input type="text" placeholder="Response Option" ng-model="vm.option.answer" />
-    <button ng-click="vm.save()">Add</button>
-  </form>
+  <div class="form-horizontal col-lg-6 col-xs-6">
+    <form class="pollTitle" ng-submit="vm.savePollName()">
+      <input type="text" placeholder="Enter a Poll Question" ng-model="vm.poll.title" class="pollTitle" />
+    </form>
+    <form ng-submit="vm.save()">
+      <input type="text" placeholder="Response Option" ng-model="vm.option.answer" />
+      <button>Add</button>
+    </form>
+  </div>
   <div class="col-lg-6 col-xs-6">
     <h3>{{ vm.poll.title }}</h3>
     <ul>
@@ -14,8 +17,9 @@
         <label for="{{ option.answer }}">{{ option.answer }}</label>
         <input type="radio" id="option.answer" name="option">
         <p>Votes: {{ option.vote }} </p>
+        <button ng-click="vm.delete(option.answer)">delete</button>
       </li>
     </ul>
-    <button ng-if="vm.poll.title" ng-click="vm.saveToDB()">Love it? Save it!</button>
+    <a ng-href="/polls" class="btn btn-default" ng-if="vm.poll.title" ng-click="vm.saveToDB()">Love it? Save it!</a>
   </div>
 </div>
