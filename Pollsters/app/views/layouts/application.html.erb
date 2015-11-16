@@ -42,42 +42,41 @@
           <p class="text-danger">{{auth.error}}</p>
         </div>
         <div class="col-md-1 col-md-offset-11">
-          <button class="btn btn-danger btn-xs" ng-click="auth.toggleLogin()">x</button>
+          <p><a href="#" ng-click="auth.toggleLogin()">Close</a></p>
         </div>
         <form>
-          <div class="form-group">
-            <label for="loginEmail">Email:</label>
-            <input class="form-control" if="loginEmail" type="text" ng-model="auth.user.email" />
-          </div>
-          <div class="form-group">
-            <label for="loginPW">Password:</label>
-            <input class="form-control" if="loginPw" type="password" ng-model="auth.user.password" />
-            </label>
-          </div>
-          <button class="btn btn-primary" ng-click="auth.login()">Login</button>
+            <div class="form-group">
+              <label for="loginEmail">Email:</label>
+              <input class="form-control" id="loginEmail" type="text" ng-model="auth.user.email" />
+            </div>
+            <div class="form-group">
+              <label for="loginPW">Password:</label>
+              <input class="form-control" id="loginPw" type="password" ng-model="auth.user.password" />
+              </label>
+            </div>
+            <button class="btn btn-primary" ng-click="auth.login()">Login</button>
         </form>
       </div>
     </div>
 
     <!-- Sign Up Form -->
     <div class="row" ng-show="auth.showSignup">
-
       <div class="col-md-4 col-md-offset-4">
         <div class="row text-center" ng-if="auth.emailErrors || auth.passwordErrors">
           <p class="text-danger" ng-if="auth.emailErrors" ng-repeat="emailError in auth.emailErrors track by $index">Email {{emailError}}.</p>
           <p class="text-danger" ng-if="auth.passwordErrors" ng-repeat="passwordError in auth.passwordErrors track by $index">Password {{passwordError}}.</p>
         </div>
         <div class="col-md-1 col-md-offset-11">
-          <button class="btn btn-danger btn-xs" ng-click="auth.toggleSignup()">x</button>
+          <p><a href="#" ng-click="auth.toggleSignup()">Close</a></p>
         </div>
         <form>
           <div class="form-group">
             <label for="newUserEmail">Your Email:</label>
-            <input class="form-control" if="newUserEmail" type="text" ng-model="auth.newUser.email" />
+            <input class="form-control" id="newUserEmail" type="text" ng-model="auth.newUser.email" />
           </div>
           <div class="form-group">
             <label for="newUserPw">Enter a Password:</label>
-            <input class="form-control" if="newUserPw" type="password" ng-model="auth.newUser.password" />
+            <input class="form-control" id="newUserPw" type="password" ng-model="auth.newUser.password" />
             </label>
           </div>
 <!--           <div class="form-group">

@@ -1,7 +1,6 @@
 (function(){
   'use strict';
 
-
   angular
   .module('app.users')
   .config(ConfigUsers);
@@ -16,6 +15,4 @@
       controllerAs: 'vm'
     })
   }
-
-
 })();
