@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">My Account</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-7 col-md-offset-1">
+            <div class="container-fluid">
+              <h4 ng-if="!vm.updateEmail">Email: {{vm.user.email}}</h4>
+              <form ng-if="vm.updateEmail">
+                <div class="form-group">
+                  <label for="updateEmail">New Email:</label>
+                  <input type="text" id="updateEmail" ng-model="vm.user.email" />
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-primary btn-sm" ng-click="vm.toggleEmailShow()">Update Email Address</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-7 col-md-offset-1">
+            <form ng-if="vm.resetPw">
+              <div class="form-group">
+                <label for="changePw">New Password:</label>
+                <input type="password" id="changePw" ng-model="vm.user.password" />
+              </div>
+            </form>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-primary btn-sm" ng-click="vm.togglePwReset()">Change Password</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2 col-md-offset-5">
+            <button ng-if="vm.updateEmail || vm.resetPw" class="btn btn-info btn-block">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+PASSWORD TWICE
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">My Polls</h3>
+      </div>
+      <div class="panel-body">
+        Panel content
+      </div>
+    </div>
+
+  </div>
+</div>
