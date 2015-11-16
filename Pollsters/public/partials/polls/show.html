@@ -1,1 +1,11 @@
-<div ng-controller=""
+<div ng-controller="showController" class="container-fluid">
+  <div class="col-lg-6 col-xs-6">
+    <p> {{ showPoll }}</p>
+    <h1>{{ showPoll.poll.title }}</h1>
+    <form option in showPoll.option>
+      <label for="{{option.answer}}">{{ option.answer }}</label>
+      <input id="option.answer" type="radio" name="pollAnswers">
+      <input type="submit" class="btn btn-primary">
+    </form>
+  </div>
+</div>

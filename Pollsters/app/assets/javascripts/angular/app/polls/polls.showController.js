@@ -12,7 +12,6 @@
        vm.showPoll = data.data.poll;
       console.log(vm.showPoll);
     })
-    vm.poll =
   }
 
 })();
