@@ -29,8 +29,9 @@
 
     vm.saveID = function() {
       var handle = vm.twitterHandle || 'PollstersCo'
+      console.log('handle is ', handle)
       vm.source = "https://twitter.com/intent/tweet?screen_name=" + handle + "&text=Check%20out%20the%20results%20of%20this%20poll"
-      $('.twitter-mention-button').attr('href', vm.source)
+      $('a.twitter-mention-button').attr('href', vm.source)
       console.log('source is, ', vm.source)
       console.log('twiiter name is ', vm.twitterHandle);
     }
