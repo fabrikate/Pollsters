@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    render json: { id: @user.id, email: @user.email }, status: :ok
+    render json: @user
   end
 
   # POST /users

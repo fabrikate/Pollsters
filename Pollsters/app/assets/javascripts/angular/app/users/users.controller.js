@@ -9,16 +9,23 @@
 
   function UsersController($routeParams, $location, UserService, AuthService) {
     var vm = this;
+
     //get user's info, paramter is boolean to reset updateEmail toggle or not
     function getUserInfo(reset) {
-      vm.user = UserService.get({id: $routeParams.user});
-      vm.user =
-
-
-
-      if (reset) {
-        vm.updateEmail = false;
-        vm.emailErrors = true;
+      var paramsUser = $routeParams.user;
+      var userResponseData;
+      //ensure user is logged in and owner of account
+      if (paramsUser == AuthService.current) {
+        userResponseData = UserService.get({id: paramsUser});
+        userResponseData.$promise.then(function(data) {
+          vm.user = data.user;
+        });
+        if (reset) {
+          vm.updateEmail = false;
+          vm.emailErrors = true;
+        }
+      } else {
+        $location.path('/');
       }
     }
 
@@ -89,15 +96,8 @@
       vm.passwordChanged = null;
     }
 
-    function ensureLoggedInUser() {
-      if (vm.current !== vm.user.id) {
-        $location.path('/');
-      }
-    }
-
     getUserInfo(true);
     vm.current = AuthService.current;
-    ensureLoggedInUser();
     vm.toggleEmailShow = toggleEmailShow;
     vm.togglePwReset =  togglePwReset;
     vm.updateUser = updateUser;

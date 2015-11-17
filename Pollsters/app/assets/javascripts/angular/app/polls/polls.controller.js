@@ -5,11 +5,10 @@
   .module('app.polls')
   .controller('PollsController', PollsController);
 
-  PollsController.$inject = ['PollFactory', 'OptionFactory', '$window'];
+  PollsController.$inject = ['PollFactory', 'OptionFactory', '$window', 'AuthService'];
 
-  function PollsController(PollFactory, OptionFactory, $window) {
+  function PollsController(PollFactory, OptionFactory, $window, AuthService) {
     var vm = this;
-
     //upvote
     vm.upVote = function(){
       var ID = vm.chooseVote;
@@ -46,7 +45,7 @@
     vm.savePollName = function() {
       vm.createdPoll = new PollFactory();
       vm.createdPoll.title = vm.poll.title;
-      vm.createdPoll.user_id = auth.current
+      vm.createdPoll.user_id = AuthService.current
       PollFactory.save(vm.createdPoll).$promise.then(function(data) {
         vm.currentPoll_id = data.poll.id;
       })
