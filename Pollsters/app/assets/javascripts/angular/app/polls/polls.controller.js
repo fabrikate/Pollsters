@@ -5,9 +5,9 @@
   .module('app.polls')
   .controller('PollsController', PollsController);
 
-  PollsController.$inject = ['PollFactory', 'OptionFactory'];
+  PollsController.$inject = ['PollFactory', 'OptionFactory', '$window'];
 
-  function PollsController(PollFactory, OptionFactory) {
+  function PollsController(PollFactory, OptionFactory, $window) {
     var vm = this;
 
     //upvote
@@ -15,7 +15,9 @@
       var ID = vm.chooseVote;
       var choice = OptionFactory.get({id:ID}, function(){
         choice.option.vote += 1;
+        var url = '/polls/'+ choice.option.poll_id
         choice.$update(choice.option);
+        $window.location.href = url;
       });
     };
 
@@ -39,6 +41,7 @@
     }
     vm.pollDB = [];
     vm.optionsDB = [];
+
     //save poll name to the database
     vm.savePollName = function() {
       vm.createdPoll = new PollFactory();

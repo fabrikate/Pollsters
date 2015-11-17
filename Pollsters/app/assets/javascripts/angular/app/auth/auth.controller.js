@@ -16,23 +16,39 @@
           auth.user = {};
           setUser(data.data.user.id);
         } else if (data.data.error) {
-          auth.error = data.data.error;
+          auth.loginError = data.data.error;
           auth.user = {};
         }
       });
     }
 
     function createUser() {
-      var createResponse = UserService.save(auth.newUser);
-      createResponse.$promise.then(function(data) {
-        setUser(data.id);
-        auth.newUser = {};
-      }, function(response) {
-        auth.emailErrors = response.data.email;
-        auth.passwordErrors = response.data.password;
-        auth.newUser = {};
-        console.log(response.data);
-      });
+      var createResponse;
+      clearMessages();
+      if (!auth.newUser.email || !auth.newUser.password) {
+        //error for blank submissions
+        auth.signupError = 'Please enter a username and password.'
+      } else if (auth.newUser.password === auth.newUserPw2) {
+        //passwords match
+        createResponse = UserService.save(auth.newUser);
+        createResponse.$promise.then(function(data) {
+          setUser(data.id);
+          auth.newUser = {};
+        }, function(response) {
+          if (response.data.email) {
+            auth.emailErrors = response.data.email;
+            auth.newUser.email = null;
+          }
+          if (response.data.password) {
+            auth.passwordErrors = response.data.password;
+            resetUnmatchedPasswords();
+          }
+        });
+      } else {
+        //error for passwords do not match
+        resetUnmatchedPasswords();
+        return auth.signupError = 'Passwords do not match.';
+      }
     }
 
     function toggleLogin() {
@@ -55,18 +71,27 @@
 
     function clearUX() {
       //blank out any data for UX cleanliness
-      auth.error = null;
-      auth.emailErrors = null;
-      auth.passwordErrors = null;
       auth.user = {};
       auth.newUser = {};
+      clearMessages();
+    }
+
+    function clearMessages() {
+      auth.loginError = null;
+      auth.emailErrors = null;
+      auth.passwordErrors = null;
+      auth.signupError = null;
+    }
+
+    function resetUnmatchedPasswords() {
+      auth.newUser.password = null;
+      auth.newUserPw2 = null;
     }
 
     function logout() {
       //have server log out
       AuthService.logout().then(function(data) {
         if (data.data.message === "Logged out.")
-        // console.log(data.data.message);
         ipCookie.remove('current');
         console.log(ipCookie('current'));
         auth.loggedIn = false;
