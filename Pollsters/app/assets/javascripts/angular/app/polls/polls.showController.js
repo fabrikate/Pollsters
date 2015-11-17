@@ -26,6 +26,7 @@
       })
     })
     vm.selected = '';
+    vm.handle = 'twitterHandle' || 'PollstersCo';
   }
 
 })();
