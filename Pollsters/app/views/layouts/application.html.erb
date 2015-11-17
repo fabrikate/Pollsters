@@ -54,8 +54,8 @@
         <div class="col-md-1 col-md-offset-11">
           <p><a href="#" ng-click="auth.toggleLogin()">Close</a></p>
         </div>
-        <div class="row text-center" ng-if="auth.error">
-          <p class="text-danger">{{auth.error}}</p>
+        <div class="row text-center" ng-if="auth.loginError">
+          <p class="text-danger">{{auth.loginError}}</p>
         </div>
         <form>
             <div class="form-group">
@@ -78,10 +78,10 @@
         <div class="col-md-1 col-md-offset-11">
           <p><a href="#" ng-click="auth.toggleSignup()">Close</a></p>
         </div>
-        <div class="row text-center" ng-if="auth.emailErrors || auth.passwordErrors || auth.passwordsNotMatched">
+        <div class="row text-center" ng-if="auth.emailErrors || auth.passwordErrors || auth.signupError">
           <p class="text-danger" ng-if="auth.emailErrors" ng-repeat="emailError in auth.emailErrors track by $index">Email {{emailError}}.</p>
           <p class="text-danger" ng-if="auth.passwordErrors" ng-repeat="passwordError in auth.passwordErrors track by $index">Password {{passwordError}}.</p>
-          <p class="text-danger" ng-if="auth.passwordsNotMatched">{{auth.passwordsNotMatched}}</p>
+          <p class="text-danger" ng-if="auth.signupError">{{auth.signupError}}</p>
         </div>
         <form>
           <div class="form-group">

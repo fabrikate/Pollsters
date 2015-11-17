@@ -16,16 +16,21 @@
           auth.user = {};
           setUser(data.data.user.id);
         } else if (data.data.error) {
-          auth.error = data.data.error;
+          auth.loginError = data.data.error;
           auth.user = {};
         }
       });
     }
 
     function createUser() {
-      var createResponse = UserService.save(auth.newUser);
+      var createResponse;
       clearMessages();
-      if (auth.newUser.password === auth.newUserPw2) {
+      if (!auth.newUser.email || !auth.newUser.password) {
+        //error for blank submissions
+        auth.signupError = 'Please enter a username and password.'
+      } else if (auth.newUser.password === auth.newUserPw2) {
+        //passwords match
+        createResponse = UserService.save(auth.newUser);
         createResponse.$promise.then(function(data) {
           setUser(data.id);
           auth.newUser = {};
@@ -40,8 +45,9 @@
           }
         });
       } else {
+        //error for passwords do not match
         resetUnmatchedPasswords();
-        return auth.passwordsNotMatched = 'Passwords do not match.';
+        return auth.signupError = 'Passwords do not match.';
       }
     }
 
@@ -71,10 +77,10 @@
     }
 
     function clearMessages() {
-      auth.error = null;
+      auth.loginError = null;
       auth.emailErrors = null;
       auth.passwordErrors = null;
-      auth.passwordsNotMatched = null;
+      auth.signupError = null;
     }
 
     function resetUnmatchedPasswords() {
