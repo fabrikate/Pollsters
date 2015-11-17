@@ -10,7 +10,7 @@
     <div class="col-lg-3 col-xs-3"ng-repeat='poll in vm.Polls | filter:query' ng-if="poll.options.length > 1">
       <div class="panel panel-success text-right">
         <div class="panel-heading text-left">
-          <h1 class="panel-title">{{poll.title}}</h1>
+          <a ng-href="/polls/{{poll.id}}" class="panel-title">{{poll.title}}</a>
         </div>
 
         <table class="table table-striped text-left">
