@@ -11,12 +11,11 @@
         <label for="doughnut">Doughnut</label>
         <input type="radio" id="doughnut" ng-model="selected" value="doughnut" name="chartType" />
         <label for="pie">Pie</label>
-        <input type="radio" id="pie" ng-model="selected" value="pie" name="chartType" checked=true/>
+        <input type="radio" id="pie" ng-model="selected" value="pie" name="chartType" checked="checked"/>
       </form>
       <canvas ng-show="selected === 'doughnut'" id="doughnut" class="chart chart-doughnut" chart-data="vm.pollData" chart-labels="vm.pollLabels"></canvas>
 
       <canvas ng-hide="selected === 'doughnut'" id="pie" class="chart chart-pie" chart-data="vm.pollData" chart-labels="vm.pollLabels"></canvas>
-      <img src="/assets/Logo.png" />
     </div>
   </div>
 </div>
