@@ -10,58 +10,66 @@
   function UsersController($routeParams, UserService, AuthService) {
     var vm = this;
 
-    console.log(AuthService.current);
     vm.current = AuthService.current;
 
-    function getUserInfo() {
-      // console.log($routeParams.user);
+    //get user's info, paramter is boolean to reset updateEmail toggle or not
+    function getUserInfo(reset) {
       vm.user = UserService.get({id: $routeParams.user});
+      if (reset) {
+        vm.updateEmail = false;
+        vm.emailErrors = true;
+      }
     }
 
     function toggleEmailShow() {
-      vm.updateEmail = !vm.updateEmail;
+      vm.updateEmail = true;
+      clearMessages();
     }
 
     function togglePwReset() {
-      vm.resetPw = !vm.resetPw;
+      vm.resetPw = true;
+      clearMessages();
     }
 
     function updateUser() {
-      var createResponse;
-// update({id: vm.contact.id},
-//           {
-//             name: vm.contact.name,
-//             email: vm.contact.email,
-//             phone: vm.contact.phone
-//           }
-
-//clear out user shit when updated
-
-//send in per request
-      if (vm.user.password) {
-        if (vm.user.password === vm.confirmPw) {
-        //update entire account
-        // createResponse = UserService.update({id: vm.user.id}, vm.user);
-
-        } else {
-          // vm.passwordErrors = ['Passwords do not match.'];
-        }
-      } else {
-console.log(vm.user.email, vm.user.password);
-        //update email only
-        createResponse = UserService.update({id: vm.user.id}, {email: vm.user.email});
+      var updateEmailResponse;
+      var updatePasswordResponse;
+      clearMessages();
+      //send in per request update type
+      //update email
+      if (vm.updateEmail) {
+        updateEmailResponse = UserService.update({id: vm.user.id}, {email: vm.user.email});
+        updateEmailResponse.$promise.then(function(data) {
+          vm.emailChanged = 'Email updated successfully.'
+          getUserInfo(true);
+        }, function(response) {
+          vm.emailErrors = response.data.email;
+          vm.passwordErrors = response.data.password;
+          getUserInfo(false);
+          console.log(response.data);
+        });
       }
-      createResponse.$promise.then(function(data) {
-        console.log(data);
-        clearUserPw();
-      }, function(response) {
-        vm.emailErrors = response.data.email;
-        vm.passwordErrors = response.data.password;
-        clearUserPw();
-        console.log(response.data);
-      });
+      //update password
+      if (vm.user.password) {
+        //put pw comparison in user factory? (also used on signup page)
+        if (vm.user.password === vm.confirmPw) {
+          updatePasswordResponse = UserService.update({id: vm.user.id}, {password: vm.user.password});
+          updatePasswordResponse.$promise.then(function(data) {
+            vm.passwordChanged = 'Password changed successfully.';
+            clearUserPw();
+            vm.resetPw = false;
+          }, function(response) {
+            vm.emailErrors = response.data.email;
+            vm.passwordErrors = response.data.password;
+            clearUserPw();
+            console.log(response.data);
+          });
+        } else {
+          clearUserPw();
+          return vm.passwordsNotMatched = 'Passwords do not match.';
+        }
+      }
     }
-
 
     function clearUserPw() {
       vm.user.password = null;
@@ -69,13 +77,23 @@ console.log(vm.user.email, vm.user.password);
     }
 
     function reset() {
-      // vm. = false;
+      vm.updateEmail = false;
+      vm.resetPw = false;
+      clearMessages();
+    }
+
+    function clearMessages() {
+      vm.emailErrors = null;
+      vm.passwordErrors = null;
+      vm.passwordNotMatched = null;
+      vm.emailChanged = null;
+      vm.passwordChanged = null;
     }
 
     vm.toggleEmailShow = toggleEmailShow;
     vm.togglePwReset =  togglePwReset;
     vm.updateUser = updateUser;
-
-    getUserInfo();
+    vm.reset = reset;
+    getUserInfo(true);
   }
 })();

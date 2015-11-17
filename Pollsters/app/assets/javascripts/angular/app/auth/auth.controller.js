@@ -24,15 +24,25 @@
 
     function createUser() {
       var createResponse = UserService.save(auth.newUser);
-      createResponse.$promise.then(function(data) {
-        setUser(data.id);
-        auth.newUser = {};
-      }, function(response) {
-        auth.emailErrors = response.data.email;
-        auth.passwordErrors = response.data.password;
-        auth.newUser = {};
-        console.log(response.data);
-      });
+      clearMessages();
+      if (auth.newUser.password === auth.newUserPw2) {
+        createResponse.$promise.then(function(data) {
+          setUser(data.id);
+          auth.newUser = {};
+        }, function(response) {
+          if (response.data.email) {
+            auth.emailErrors = response.data.email;
+            auth.newUser.email = null;
+          }
+          if (response.data.password) {
+            auth.passwordErrors = response.data.password;
+            resetUnmatchedPasswords();
+          }
+        });
+      } else {
+        resetUnmatchedPasswords();
+        return auth.passwordsNotMatched = 'Passwords do not match.';
+      }
     }
 
     function toggleLogin() {
@@ -55,18 +65,27 @@
 
     function clearUX() {
       //blank out any data for UX cleanliness
+      auth.user = {};
+      auth.newUser = {};
+      clearMessages();
+    }
+
+    function clearMessages() {
       auth.error = null;
       auth.emailErrors = null;
       auth.passwordErrors = null;
-      auth.user = {};
-      auth.newUser = {};
+      auth.passwordsNotMatched = null;
+    }
+
+    function resetUnmatchedPasswords() {
+      auth.newUser.password = null;
+      auth.newUserPw2 = null;
     }
 
     function logout() {
       //have server log out
       AuthService.logout().then(function(data) {
         if (data.data.message === "Logged out.")
-        // console.log(data.data.message);
         ipCookie.remove('current');
         console.log(ipCookie('current'));
         auth.loggedIn = false;
