@@ -24,6 +24,7 @@
     var Polls = PollFactory.get({}, function(data) {
       vm.Polls = data.polls;
     });
+
     // query all options from the database
     var Options = OptionFactory.get({}, function(data) {
       vm.Options = data.options;
@@ -58,6 +59,7 @@
       vm.option.poll_id = null;
       vm.option.answer = '';
     }
+    
     vm.saveToDB = function() {
       vm.optionsDB.forEach(function(item) {
         vm.createdOption = new OptionFactory();
