@@ -5,16 +5,17 @@
   .module('app.users')
   .controller('UsersController', UsersController);
 
-  UsersController.$inject = ['$routeParams', 'UserService', 'AuthService'];
+  UsersController.$inject = ['$routeParams', '$location', 'UserService', 'AuthService'];
 
-  function UsersController($routeParams, UserService, AuthService) {
+  function UsersController($routeParams, $location, UserService, AuthService) {
     var vm = this;
-
-    vm.current = AuthService.current;
-
     //get user's info, paramter is boolean to reset updateEmail toggle or not
     function getUserInfo(reset) {
       vm.user = UserService.get({id: $routeParams.user});
+      vm.user =
+
+
+
       if (reset) {
         vm.updateEmail = false;
         vm.emailErrors = true;
@@ -88,10 +89,18 @@
       vm.passwordChanged = null;
     }
 
+    function ensureLoggedInUser() {
+      if (vm.current !== vm.user.id) {
+        $location.path('/');
+      }
+    }
+
+    getUserInfo(true);
+    vm.current = AuthService.current;
+    ensureLoggedInUser();
     vm.toggleEmailShow = toggleEmailShow;
     vm.togglePwReset =  togglePwReset;
     vm.updateUser = updateUser;
     vm.reset = reset;
-    getUserInfo(true);
   }
 })();
