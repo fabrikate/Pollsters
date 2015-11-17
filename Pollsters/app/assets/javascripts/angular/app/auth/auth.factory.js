@@ -8,7 +8,6 @@
 
   function AuthService($http) {
 
-
     function attemptLogin(userInfo) {
       return $http.post('/api/login', userInfo)
         .success(loginSuccess)

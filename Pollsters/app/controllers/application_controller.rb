@@ -11,8 +11,4 @@ class ApplicationController < ActionController::Base
     #set current_user if logged in
     @current_user ||= User.find_by_id(session[:user_id]).id
   end
-
 end
-
-
-#any before_filter that can stop execution (by returning false) should have a ! at the end of it's name
