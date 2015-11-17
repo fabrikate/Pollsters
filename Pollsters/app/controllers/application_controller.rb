@@ -8,20 +8,9 @@ class ApplicationController < ActionController::Base
       render json: {error: "You must be logged in!"}, status: :unathorized
       return false
     end
+    #set current_user if logged in
+    @current_user ||= User.find_by_id(session[:user_id]).id
   end
-
-  # def user_poll
-  #   # Let's not make a database query if we don't need to!
-  #   return unless session[:user_id]
-
-  #   # if session[:user_id] == Poll.find
-  #   # Defines @current_user if it is not already defined.
-  #   # if User.find_by_id(session[:user_id]) ==
-  #   #   Poll.find//params
-  #   # @current_user ||= User.find_by_id(session[:user_id])
-
-
-  # end
 
 end
 
