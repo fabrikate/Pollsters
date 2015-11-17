@@ -66,8 +66,9 @@
       //have server log out
       AuthService.logout().then(function(data) {
         if (data.data.message === "Logged out.")
+        // console.log(data.data.message);
         ipCookie.remove('current');
-        // console.log(ipCookie('current'));
+        console.log(ipCookie('current'));
         auth.loggedIn = false;
         $location.path('/');
       }, function(error) {
@@ -84,10 +85,10 @@
     }
 
     function checkLoginStatus() {
-      var current = ipCookie('current');
-      if (current) {
+      AuthService.current = ipCookie('current');
+      if (AuthService.current) {
         auth.loggedIn = true;
-        auth.current = current;
+        auth.current = AuthService.current;
         return true;
       } else {
         return false;

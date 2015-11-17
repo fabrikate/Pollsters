@@ -1,3 +1,23 @@
 body {
   padding-top: 100px;
 }
+
+#logo {
+  color: #CC6257;
+  font-size: 46px;
+}
+
+.update-row {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.update-form-field {
+  margin: 0;
+
+}
+
+.lucky{
+  font-family: Luckiest Guy;
+  color: #385F86;
+}
