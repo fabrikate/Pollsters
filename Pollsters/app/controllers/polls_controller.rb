@@ -1,9 +1,7 @@
 class PollsController < ApplicationController
-  # before_action :confirm_logged_in!, except: [:index, :show]
-
-
+  before_action :confirm_logged_in!, except: [:index, :show]
   before_action :set_poll, only: [:show, :update, :destroy]
-  # before_action :ensure_correct_owner!, only: [:show, :update, :destroy]
+  before_action :ensure_correct_owner!, only: [:update, :destroy]
 
   def index
     @polls = Poll.all
@@ -42,11 +40,10 @@ class PollsController < ApplicationController
 
   private
     def ensure_correct_owner!
-      p @poll.user_id
-      # unless @current_user == @poll.user_id.to_i
-      #   render json: {error: "Invalid user."}, status: :unathorized
-      #   return false
-      # end
+      unless @current_user == @poll.user_id.to_i
+        render json: {error: "Invalid user."}, status: :unathorized
+        return false
+      end
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_poll
