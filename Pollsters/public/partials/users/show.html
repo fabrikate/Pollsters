@@ -6,16 +6,16 @@
       </div>
       <div class="panel-body text-center">
         <div class="row">
-          <div class="row text-center" ng-if="vm.emailErrors || vm.passwordErrors || vm.passwordNotMatched">
+          <div class="row text-center" ng-if="vm.emailErrors || vm.passwordErrors || vm.passwordsNotMatched">
             <p class="text-danger" ng-if="vm.emailErrors" ng-repeat="emailError in vm.emailErrors track by $index">Email {{emailError}}.</p>
             <p class="text-danger" ng-if="vm.passwordErrors" ng-repeat="passwordError in vm.passwordErrors track by $index">Password {{passwordError}}.</p>
-            <p class="text-danger" ng-if="vm.passwordNotMatched">{{vm.passwordNotMatched}}</p>
+            <p class="text-danger" ng-if="vm.passwordsNotMatched">{{vm.passwordsNotMatched}}</p>
           </div>
         </div>
         <div class="row">
           <div class="row text-center" ng-if="vm.emailChanged || vm.passwordChanged">
-            <p class="text-info" ng-if="vm.emailChanged">{{vm.emailChanged}}</p>
-            <p class="text-info" ng-if="vm.passwordErrors" ng-repeat="passwordError in vm.passwordErrors track by $index">Password {{passwordError}}.</p>
+            <p class="text-success" ng-if="vm.emailChanged">{{vm.emailChanged}}</p>
+            <p class="text-success" ng-if="vm.passwordChanged">{{vm.passwordChanged}}</p>
           </div>
         </div>
         <div class="row update-form-field" ng-if="!vm.updateEmail">
