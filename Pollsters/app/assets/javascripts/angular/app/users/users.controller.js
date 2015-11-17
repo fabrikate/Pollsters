@@ -5,10 +5,26 @@
   .module('app.users')
   .controller('UsersController', UsersController);
 
-  UsersController.$inject = ['$routeParams', '$location', 'UserService', 'AuthService'];
+  UsersController.$inject = ['$routeParams', '$location', 'UserService', 'AuthService', 'PollFactory'];
 
-  function UsersController($routeParams, $location, UserService, AuthService) {
+  function UsersController($routeParams, $location, UserService, AuthService, PollFactory) {
     var vm = this;
+
+
+    UserService.get({id:AuthService.current}).$promise.then(function(data){
+      vm.userPolls = data.user.polls;
+    });
+
+    vm.deletePoll = function(poll){
+      if (confirm("Are you sure you would like to delete this poll?")){  
+        PollFactory.delete({id: poll.id}, function(){
+          UserService.get({id:AuthService.current}).$promise.then(function(data){
+            vm.userPolls = data.user.polls;
+          });
+        });
+      };
+    };
+
 
     //get user's info, paramter is boolean to reset updateEmail toggle or not
     function getUserInfo(reset) {
