@@ -1,4 +1,4 @@
-<div class="container-fluid row" ng-controller="PollsController">
+<div class="container-fluid" ng-controller="PollsController">
 
   <div class="row">
     <div class="col-lg-6 text-left col-xs-6">
@@ -6,24 +6,36 @@
     </div>
   </div>
 
-
   <div class="row">
     <div class="col-lg-3 col-xs-3"ng-repeat='poll in vm.Polls | filter:query' ng-if="poll.options.length > 1">
       <div class="panel panel-success text-right">
         <div class="panel-heading text-left">
-        <h3 class="panel-title">{{poll.title}}</h3>
-      </div>
+          <h1 class="panel-title">{{poll.title}}</h1>
+        </div>
 
-      <form>
-        <h4 ng-repeat="option in poll.options">
-          <label for="{{ option.answer }}">{{ option.answer }}</label>
-          <input type="radio" ng-model="vm.chooseVote" id="option.answer" name="option"
-          value="{{option.id}}"/>
-        </h4>
+        <table class="table table-striped text-left">
+          <thead>
+          <tr>
+            <th>Option</th>
+            <th>Number of Votes</th>
+            <th>Select</h3>
+          </thead>
+          <tbody>
+            <tr ng-repeat="option in poll.options">
+              <td>{{option.answer}}</td>
+              <td>{{option.vote}}</td>
+              <td>
+                <input type="radio" ng-model="vm.chooseVote" id="option.answer" name="option" value="{{option.id}}"/>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
         <div class="panel-footer text-center">
           <button class="text-center" ng-click="vm.upVote()">Vote </button>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>
