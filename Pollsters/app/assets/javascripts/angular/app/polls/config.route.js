@@ -15,6 +15,9 @@
       controller: 'PollsController',
       controllerAs: 'vm'
     })
+    .when('/about',{
+      templateUrl: '/partials/about/about.html'
+    })
     .when('/polls/new', {
       templateUrl: '/partials/polls/create.html',
       controller: 'PollsController',
@@ -26,5 +29,4 @@
       controllerAs: 'vm'
     })
   }
-
 })();
