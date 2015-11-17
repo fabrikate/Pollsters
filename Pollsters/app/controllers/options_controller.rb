@@ -1,4 +1,5 @@
 class OptionsController < ApplicationController
+  before_action :confirm_logged_in!, only: [:create, :destroy]
   before_action :set_option, only: [:show, :edit, :update, :destroy]
 
   # GET /options
