@@ -1,7 +1,7 @@
 class PollsController < ApplicationController
-  before_action :confirm_logged_in!, except: [:index, :show]
+  # before_action :confirm_logged_in!, except: [:index, :show]
   before_action :set_poll, only: [:show, :update, :destroy]
-  before_action :ensure_correct_owner!, only: [:update, :destroy]
+  # before_action :ensure_correct_owner!, only: [:update, :destroy]
 
   def index
     @polls = Poll.all
@@ -35,7 +35,7 @@ class PollsController < ApplicationController
   # DELETE /polls/1
   def destroy
     @poll.destroy
-    render json: @contact, status: :ok
+    render json: @poll, status: :ok
   end
 
   private

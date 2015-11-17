@@ -53,6 +53,7 @@
 
     //save poll name to the database
     vm.savePollName = function() {
+      console.log('line 56', AuthService.current);
       vm.createdPoll = new PollFactory();
       vm.createdPoll.title = vm.poll.title;
       vm.createdPoll.user_id = AuthService.current
@@ -86,7 +87,7 @@
         }
       }
     };
-    ensureLoggedIn();
+    // ensureLoggedIn();
   }
 
 })();
