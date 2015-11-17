@@ -44,10 +44,12 @@
         <div class="panel-body">
           <!-- twitter goes here -->
           <label for="twitID">Your Twitter Handle:
-            <input type="text" id="twitID" name="twitterID" ng-model="twitterHandle" required/>
-            <p>{{twitterHandle}}</p>
+            <form ng-submit="vm.saveID()" >
+              <input type="text" id="twitID" name="twitterID" ng-model="vm.twitterHandle" required/>
+              <p>{{vm.twitterHandle}}</p>
+            </form>
           </label>
-          <a href="https://twitter.com/intent/tweet?screen_name={{twitterHandle}}&text=Check%20out%20the%20results%20of%20this%20poll" class="twitter-mention-button" data-related="PollstersCo">Tweet to @PollstersCo</a>
+          <a href="{{vm.source}}" class="twitter-mention-button" id="twitterBtn" data-related="PollstersCo">Tweet to @PollstersCo</a>
           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         </div>
       </div>
