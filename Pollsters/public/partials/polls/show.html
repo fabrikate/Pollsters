@@ -5,18 +5,39 @@
         <div class="panel-heading text-center">
           <h3 class="panel-warning">{{vm.showPoll.title}}</h3>
         </div>
-        <table class="table table-striped text-left">
+        <table class="table table-striped text-left table-hover">
           <thead>
           </thead>
             <tr>
               <th>Option</th>
               <th>Number of Votes</th>
+              <th> % </th>
+            </tr>
           <tbody>
             <tr ng-repeat="option in vm.showPoll.options">
               <td>{{option.answer}}</td>
               <td>{{option.vote}}</td>
+              <td>{{option.vote / vm.sum * 100 | number:1 }}%</td>
+            </tr>
+            <tr>
+              <td>Total Votes:</td>
+              <td></td>
+              <td>{{ vm.sum }}</td>
+            </tr>
           </tbody>
         </table>
+        <br>
+          <div class="panel-heading">
+            <h3 class="panel-title">Chart Display</h3>
+          </div>
+          <div class="panel-body">
+            <label for="doughnut">Doughnut
+              <input type="radio" id="doughnut" ng-model="selected" value="doughnut" name="chartType" />
+            </label>
+            <label for="pie">Pie
+              <input type="radio" id="pie" ng-model="selected" value="pie" name="chartType" checked />
+            </label>
+          </div>
       </div>
     </div>
     <div class="col-lg-8 col-xs-8">
@@ -24,19 +45,6 @@
         <canvas ng-show="selected === 'doughnut'" id="doughnut" class="chart chart-doughnut" chart-data="vm.pollData" chart-labels="vm.pollLabels"></canvas>
 
         <canvas ng-hide="selected === 'doughnut'" id="pie" class="chart chart-pie" chart-data="vm.pollData" chart-labels="vm.pollLabels"></canvas>
-      </div>
-
-    <div class="row">
-      <div class="col-lg-6 pull-right">
-        <form>
-          <h4><label for="doughnut">
-          <input type="radio" id="doughnut" ng-model="selected" value="doughnut" name="chartType" />
-          Doughnut</label>
-
-          <label for="pie">
-          <input type="radio" id="pie" ng-model="selected" value="pie" name="chartType" checked=true/>
-          Pie</label></br> </h4>
-        </form>
       </div>
     </div>
   </div>

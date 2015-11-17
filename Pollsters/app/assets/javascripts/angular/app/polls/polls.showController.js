@@ -9,6 +9,7 @@
 
   function showController ( PollFactory, OptionFactory, $http, $routeParams) {
     var vm = this;
+    vm.sum = 0;
 
     $http.get('http://localhost:3000/api/polls/' + $routeParams.poll_id).then(function(data) {
       vm.showPoll = data.data.poll;
@@ -19,12 +20,12 @@
         vm.pollLabels.push(item.answer);
         vm.pollData.push(item.vote)
       })
-
-      console.log(vm.pollLabels);
       console.log(vm.pollData);
+      vm.pollData.forEach(function(item) {
+        vm.sum += item;
+      })
     })
     vm.selected = '';
-    console.log('selected: ', vm.selected)
   }
 
 })();
