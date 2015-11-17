@@ -1,5 +1,5 @@
 <div class="container-fluid row" ng-controller="PollsController">
-    
+
     <div class="col-lg-4 col-xs-4">
       <h3>Create a Poll<h3>
           <form class="pollTitle" ng-submit="vm.savePollName()">
@@ -38,7 +38,7 @@
         </table>
 
         <div class="panel-footer text-center">
-          <a ng-href="/polls" class="btn btn-primary" ng-if="vm.poll.title" ng-click="vm.saveToDB()">Love it? Save it!</a>
+          <a ng-href="/polls" class="btn btn-primary" ng-if="vm.optionsDB.length > 1" ng-click="vm.saveToDB()">Love it? Save it!</a>
         </div>
 
       </div>
