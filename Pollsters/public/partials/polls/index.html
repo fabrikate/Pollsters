@@ -8,14 +8,19 @@
       <div class="col-lg-9 text-right col-xs-9 lucky">
         <h1>Quick and Easy Polling</h1>
         <h2>Made and Displayed your way</h2>
-
       </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 text-left col-xs-6">
+    <h2>Search Polls for <input ng-model="query"></h2>
     </div>
   </div>
 
 
   <div class="row">
-    <div class="col-lg-3 col-xs-3"ng-repeat='poll in vm.Polls' ng-if="poll.options.length > 1">
+    <div class="col-lg-3 col-xs-3"ng-repeat='poll in vm.Polls | filter:query' ng-if="poll.options.length > 1">
       <div class="panel panel-success text-right">
         <div class="panel-heading text-left">
         <h3 class="panel-title">{{poll.title}}</h3>
