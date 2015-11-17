@@ -28,8 +28,9 @@
     vm.selected = '';
 
     vm.saveID = function() {
-      vm.source = "https://twitter.com/intent/tweet?screen_name=" + vm.twitterHandle + "&text=Check%20out%20the%20results%20of%20this%20poll"
-      $('#twitterBtn').attr('href', vm.source);
+      var handle = vm.twitterHandle || 'PollstersCo'
+      vm.source = "https://twitter.com/intent/tweet?screen_name=" + handle + "&text=Check%20out%20the%20results%20of%20this%20poll"
+      $('.twitter-mention-button').attr('href', vm.source)
       console.log('source is, ', vm.source)
       console.log('twiiter name is ', vm.twitterHandle);
     }
