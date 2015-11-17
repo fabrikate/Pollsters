@@ -3,7 +3,7 @@
     <div class="jumbotron 2 text-center">
       <div class="row">
       <div class="col-lg-3 text-left col-xs-3">
-        <img src='/assets/Logo.jpg' width="80%" height="80%">
+        <img src='/assets/Logo.png' width="80%" height="80%">
       </div>
       <div class="col-lg-9 text-right col-xs-9 lucky">
         <h1>Quick and Easy Polling</h1>
@@ -12,8 +12,8 @@
       </div>
     </div>
   </div>
-  
-  
+
+
   <div class="row">
     <div class="col-lg-3 col-xs-3"ng-repeat='poll in vm.Polls' ng-if="poll.options.length > 1">
       <div class="panel panel-success text-right">
@@ -21,10 +21,10 @@
         <h3 class="panel-title">{{poll.title}}</h3>
       </div>
 
-      <form> 
+      <form>
         <h4 ng-repeat="option in poll.options">
           <label for="{{ option.answer }}">{{ option.answer }}</label>
-          <input type="radio" ng-model="vm.chooseVote" id="option.answer" name="option" 
+          <input type="radio" ng-model="vm.chooseVote" id="option.answer" name="option"
           value="{{option.id}}"/>
         </h4>
         <div class="panel-footer text-center">
