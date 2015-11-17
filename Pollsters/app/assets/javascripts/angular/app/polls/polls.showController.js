@@ -23,6 +23,8 @@
       console.log(vm.pollLabels);
       console.log(vm.pollData);
     })
+    vm.selected = '';
+    console.log('selected: ', vm.selected)
   }
 
 })();
