@@ -46,7 +46,6 @@
           vm.emailErrors = response.data.email;
           vm.passwordErrors = response.data.password;
           getUserInfo(false);
-          console.log(response.data);
         });
       }
       //update password
@@ -62,7 +61,6 @@
             vm.emailErrors = response.data.email;
             vm.passwordErrors = response.data.password;
             clearUserPw();
-            console.log(response.data);
           });
         } else {
           clearUserPw();

@@ -93,11 +93,9 @@
       AuthService.logout().then(function(data) {
         if (data.data.message === "Logged out.")
         ipCookie.remove('current');
-        console.log(ipCookie('current'));
         auth.loggedIn = false;
         $location.path('/');
       }, function(error) {
-        console.log(error);
       });
     }
 
