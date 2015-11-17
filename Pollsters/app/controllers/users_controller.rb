@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :confirm_logged_in!, except: [:create]
-  before_action :ensure_correct_user!, except: [:create]
+  # before_action :confirm_logged_in!, except: [:create]
+  # before_action :ensure_correct_user!, except: [:create]
   before_action :set_user, except: [:create]
 
   # GET /users/1
