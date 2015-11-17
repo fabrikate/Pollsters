@@ -1,9 +1,9 @@
 class PollsController < ApplicationController
-  before_action :confirm_logged_in!, except: [:index, :show]
+  # before_action :confirm_logged_in!, except: [:index, :show]
 
 
-  # before_action :set_poll, only: [:show, :update, :destroy]
-  before_action :ensure_correct_owner!, only: [:show, :update, :destroy]
+  before_action :set_poll, only: [:show, :update, :destroy]
+  # before_action :ensure_correct_owner!, only: [:show, :update, :destroy]
 
   def index
     @polls = Poll.all
