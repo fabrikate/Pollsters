@@ -33,3 +33,8 @@ body {
   height:220px;
   overflow: auto;
 }
+
+.about{
+  height:350px;
+  overflow: auto;
+}
