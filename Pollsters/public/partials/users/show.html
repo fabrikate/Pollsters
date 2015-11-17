@@ -1,6 +1,6 @@
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
-    <div class="panel panel-primary">
+  <div class="col-lg-4 col-xs-4">
+    <div class="panel panel-success">
       <div class="panel-heading">
         <h3 class="panel-title">My Account</h3>
       </div>
@@ -30,7 +30,7 @@
           </form>
         </div>
         <div ng-hide="vm.updateEmail" class="row update-row">
-          <button class="btn btn-primary btn-sm" ng-click="vm.toggleEmailShow()">Update Email Address</button>
+          <button class="btn btn-default btn-sm" ng-click="vm.toggleEmailShow()">Update Email Address</button>
         </div>
         <div class="row update-form-field">
           <form ng-if="vm.resetPw">
@@ -47,8 +47,9 @@
           </form>
         </div>
         <div class="row update-row" ng-hide="vm.resetPw">
-          <button class="btn btn-primary btn-sm" ng-click="vm.togglePwReset()">Change Password</button>
+          <button class="btn btn-default btn-sm" ng-click="vm.togglePwReset()">Change Password</button>
         </div>
+      </div>
         <div class="row update-row" ng-if="vm.updateEmail || vm.resetPw">
           <div class="col-md-2 col-md-offset-4">
             <button class="btn btn-info" ng-click="vm.updateUser()">Submit</button>
@@ -59,13 +60,29 @@
         </div>
       </div>
     </div>
-    <div class="panel panel-primary">
+    
+  <div class="col-lg-8 col-xs-8">
+    <div class="panel panel-danger">
       <div class="panel-heading">
         <h3 class="panel-title">My Polls</h3>
       </div>
       <div class="panel-body">
-        Panel content
-        <h1>{{vm.current}}</h1>
+        <table class="table table-striped text-left">
+          <thead>
+          <tr>
+            <th>Poll</th>
+            <th>View</th>
+            <th>Delete</th>
+
+          </thead>
+          <tbody>
+            <tr ng-repeat="poll in vm.userPolls">
+              <td>{{poll.title}}</td>
+              <td><a href="/polls/{{poll.id}}">Go</a></td>
+              <td><button type="button" ng-click="vm.deletePoll(poll)">delete</button></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
