@@ -8,7 +8,6 @@
 
   <div class="row">
     <div class="col-lg-3 col-xs-3 poll"ng-repeat='poll in vm.Polls | filter:query' ng-if="poll.options.length > 1">
-      <div class="clearfix"></div>
       <div class="panel panel-success text-right">
         <div class="panel-heading text-left">
           <a ng-href="/polls/{{poll.id}}" class="panel-title">{{poll.title}}</a>
@@ -18,14 +17,12 @@
           <thead>
           <tr>
             <th>Option</th>
-            <th>Number of Votes</th>
-            <th>Select</h3>
+            <th class="text-right">Select</h3>
           </thead>
           <tbody>
             <tr ng-repeat="option in poll.options">
               <td>{{option.answer}}</td>
-              <td>{{option.vote}}</td>
-              <td>
+              <td class="text-right">
                 <input type="radio" ng-model="vm.chooseVote" id="option.answer" name="option" value="{{option.id}}"/>
               </td>
             </tr>
