@@ -31,13 +31,11 @@
           vm.pollLabels.push(item.answer);
           vm.pollData.push(item.vote)
         })
-        console.log('pollData', vm.pollData)
       })
     }
     vm.findSum = function() {
       vm.sum = 0;
       vm.pollData.forEach(function(item) {
-        console.log('tem is, ', item);
         vm.sum += item;
       })
     }

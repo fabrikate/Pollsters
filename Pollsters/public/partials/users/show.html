@@ -76,7 +76,7 @@
 
           </thead>
           <tbody>
-            <tr ng-repeat="poll in vm.userPolls">
+            <tr ng-repeat="poll in vm.userPolls" ng-if="poll.options.length > 1">
               <td>{{poll.title}}</td>
               <td><a href="/polls/{{poll.id}}">Go</a></td>
               <td><button type="button" ng-click="vm.deletePoll(poll)">delete</button></td>
