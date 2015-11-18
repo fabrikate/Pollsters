@@ -28,6 +28,7 @@
     };
 
 
+
     //get user's info, paramter is boolean to reset updateEmail toggle or not
     function getUserInfo(reset) {
       var paramsUser = $routeParams.user;
