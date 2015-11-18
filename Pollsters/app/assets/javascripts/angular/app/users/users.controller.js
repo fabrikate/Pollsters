@@ -16,7 +16,7 @@
     });
 
     vm.deletePoll = function(poll){
-      if (confirm("Are you sure you would like to delete this poll?")){  
+      if (confirm("Are you sure you would like to delete this poll?")){
         PollFactory.delete({id: poll.id}, function(){
 
           //reload data
@@ -40,7 +40,7 @@
         });
         if (reset) {
           vm.updateEmail = false;
-          vm.emailErrors = true;
+          vm.emailErrors = null;
         }
       } else {
         $location.path('/');
