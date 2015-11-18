@@ -21,6 +21,7 @@
     }
     //upvote
     vm.upVote = function(){
+      console.log('choose vote', vm.chooseVote);
       var ID = vm.chooseVote;
       var choice = OptionFactory.get({id:ID}, function(){
         choice.option.vote += 1;
