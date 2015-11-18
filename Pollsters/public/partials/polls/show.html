@@ -52,7 +52,7 @@
       </div>
     </div>
     <div class="col-lg-8 col-xs-8">
-      <div class="row">
+      <div class="row" ng-show="toVote">
         <canvas ng-show="selected === 'doughnut'" id="doughnut" class="chart chart-doughnut" chart-data="vm.pollData" chart-labels="vm.pollLabels"></canvas>
 
         <canvas ng-hide="selected === 'doughnut'" id="pie" class="chart chart-pie" chart-data="vm.pollData" chart-labels="vm.pollLabels"></canvas>
