@@ -25,9 +25,13 @@
             </tr>
           </tbody>
         </table>
-        <div class="panel-footer" >
-          <button ng-show="!toVote" ng-click="vm.upVote()" id="voteBtn">Vote</button>
-          <button ng-click="toVote=!toVote">Results</button>
+        <div class="panel-footer row">
+          <div class="col-lg-6 col-xs-6">
+            <button ng-show="!toVote" ng-click="vm.upVote()" id="voteBtn">Vote</button>
+          </div>
+          <div class="col-lg-6 col-xs-6">
+            <button ng-click="toVote=!toVote">Results</button>
+          </div>
         </div>
         <div class="panel-heading">
           <h3 class="panel-title">Chart Display</h3>
