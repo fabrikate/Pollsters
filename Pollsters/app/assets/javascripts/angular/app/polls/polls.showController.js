@@ -18,6 +18,7 @@
         choice.$update(choice.option);
         vm.showFunctionality();
         vm.sum++;
+        $('#voteBtn').hide();
       });
     };
     vm.showFunctionality = function() {
