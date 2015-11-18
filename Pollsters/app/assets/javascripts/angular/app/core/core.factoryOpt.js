@@ -7,7 +7,7 @@
   OptionFactory.$inject = ['$resource'];
 
   function OptionFactory($resource) {
-     return $resource('http://localhost:3000/api/polls/1/options/:id', {id: '@id'}, {
+     return $resource('http://pollstersco.herokuapp.com/api/polls/1/options/:id', {id: '@id'}, {
         'update': { method: 'PUT' }
       });
     };

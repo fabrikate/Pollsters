@@ -8,7 +8,7 @@
   PollFactory.$inject = ['$resource'];
 
   function PollFactory($resource) {
-   return $resource('http://localhost:3000/api/polls/:id', {id: '@id'}, {
+   return $resource('http://pollstersco.herokuapp.com/api/polls/:id', {id: '@id'}, {
       update: {
         method: 'PUT'
       }
