@@ -10,26 +10,29 @@
           </thead>
             <tr>
               <th>Option</th>
-              <th>Number of Votes</th>
-              <th> % </th>
+              <th ng-show="toVote">Number of Votes</th>
+              <th ng-show="!toVote">Select</th>
+              <th ng-show="!toVote"></th>
             </tr>
           <tbody>
             <tr ng-repeat="option in vm.showPoll.options">
               <td>{{option.answer}}</td>
-              <td>{{option.vote}}</td>
-              <td>{{option.vote / vm.sum * 100 | number:1 }}%</td>
-            </tr>
-            <tr>
-              <td>Total Votes:</td>
-              <td>{{ vm.sum }}</td>
-              <td>100%</td>
+              <td ng-show="toVote">{{option.vote}}</td>
+              <td ng-show="!toVote">
+                <input type="radio" ng-model="vm.chooseVote" id="option.answer" name="option" value="{{option.id}}"/>
+              </td>
+              <td ng-show="!toVote"> </td>
             </tr>
           </tbody>
         </table>
+        <div class="panel-footer" >
+          <button ng-show="!toVote" ng-click="vm.upVote()">Vote</button>
+          <button ng-click="toVote=!toVote">Results</button>
+        </div>
         <div class="panel-heading">
           <h3 class="panel-title">Chart Display</h3>
         </div>
-        <!-- no master panel div because it created a panel within a panel look -->
+          <!-- no master panel div because it created a panel within a panel look -->
         <div class="panel-body">
           <label for="doughnut">Doughnut
             <input type="radio" id="doughnut" ng-model="selected" value="doughnut" name="chartType" />
@@ -43,13 +46,13 @@
         </div>
         <div class="panel-body">
           <!-- twitter goes here -->
-        <a href="https://twitter.com/share" class="twitter-share-button"{count} data-text="Pollsters, Quick and Easy Polls Made and Displayed Your Way" data-via="Enter Name Here">Tweet</a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+          <a href="https://twitter.com/share" class="twitter-share-button"{count} data-text="Pollsters, Quick and Easy Polls Made and Displayed Your Way" data-via="Enter Name Here">Tweet</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         </div>
       </div>
     </div>
     <div class="col-lg-8 col-xs-8">
-      <div class="row">
+      <div class="row" ng-show="toVote">
         <canvas ng-show="selected === 'doughnut'" id="doughnut" class="chart chart-doughnut" chart-data="vm.pollData" chart-labels="vm.pollLabels"></canvas>
 
         <canvas ng-hide="selected === 'doughnut'" id="pie" class="chart chart-pie" chart-data="vm.pollData" chart-labels="vm.pollLabels"></canvas>
@@ -57,3 +60,4 @@
     </div>
   </div>
 </div>
+
