@@ -91,12 +91,12 @@
     function logout() {
       //have server log out
       AuthService.logout().then(function(data) {
-        if (data.data.message === "Logged out.")
-          console.log(data.data.message);
-        ipCookie.remove('current');
-        AuthService.current = null;
-        auth.loggedIn = false;
-        $location.path('/');
+        if (data.data.message === "Logged out.") {
+          ipCookie.remove('current');
+          AuthService.current = null;
+          auth.loggedIn = false;
+          $location.path('/');
+        }
       }, function(error) {
       });
     }

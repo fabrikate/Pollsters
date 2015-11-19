@@ -12,9 +12,10 @@
 
     //ensure logged in for creating a poll
     function ensureLoggedIn() {
-      console.log($location.path() === '/polls/new');
       if ($location.path() === '/polls/new') {
         if (!AuthService.current) {
+          console.log('hi');
+          console.log($location.path());
           $location.path('/');
         }
       }
@@ -89,7 +90,7 @@
         }
       }
     };
+    ensureLoggedIn();
   }
-
 })();
 
